@@ -1,17 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{08DA1471-EAC0-4C41-BCDA-AC3544C04EC9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F91A8D7B-C681-45EC-98EB-C1293FF62521}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MGroup.MSolve.Discretization", "src\MGroup.MSolve.Discretization\MGroup.MSolve.Discretization.csproj", "{8E6D718E-63F1-4D25-B944-51893FC5E815}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGroup.MSolve.Discretization", "src\MGroup.MSolve.Discretization\MGroup.MSolve.Discretization.csproj", "{8E6D718E-63F1-4D25-B944-51893FC5E815}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MGroup.MSolve.Geometry", "src\MGroup.MSolve.Geometry\MGroup.MSolve.Geometry.csproj", "{D4077D97-DD22-436B-9808-602820F659E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGroup.MSolve.Geometry", "src\MGroup.MSolve.Geometry\MGroup.MSolve.Geometry.csproj", "{D4077D97-DD22-436B-9808-602820F659E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MGroup.MSolve.Logging", "src\MGroup.MSolve.Logging\MGroup.MSolve.Logging.csproj", "{362923F2-0CE7-468E-BC63-EB411230C6EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGroup.MSolve.Logging", "src\MGroup.MSolve.Logging\MGroup.MSolve.Logging.csproj", "{362923F2-0CE7-468E-BC63-EB411230C6EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MGroup.MSolve.Solvers", "src\MGroup.MSolve.Solvers\MGroup.MSolve.Solvers.csproj", "{3D1A66B2-F66C-4BB1-B2F2-A954B3452FAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{362923F2-0CE7-468E-BC63-EB411230C6EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{362923F2-0CE7-468E-BC63-EB411230C6EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{362923F2-0CE7-468E-BC63-EB411230C6EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D1A66B2-F66C-4BB1-B2F2-A954B3452FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D1A66B2-F66C-4BB1-B2F2-A954B3452FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D1A66B2-F66C-4BB1-B2F2-A954B3452FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D1A66B2-F66C-4BB1-B2F2-A954B3452FAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{8E6D718E-63F1-4D25-B944-51893FC5E815} = {08DA1471-EAC0-4C41-BCDA-AC3544C04EC9}
 		{D4077D97-DD22-436B-9808-602820F659E3} = {08DA1471-EAC0-4C41-BCDA-AC3544C04EC9}
 		{362923F2-0CE7-468E-BC63-EB411230C6EF} = {08DA1471-EAC0-4C41-BCDA-AC3544C04EC9}
+		{3D1A66B2-F66C-4BB1-B2F2-A954B3452FAC} = {08DA1471-EAC0-4C41-BCDA-AC3544C04EC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65770E5A-E644-45FE-B065-54C0E3D6EBB4}
