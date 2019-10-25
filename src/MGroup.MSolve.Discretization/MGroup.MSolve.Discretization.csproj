@@ -7,7 +7,7 @@
     <PackageProjectUrl>http://mgroup.ntua.gr</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
     <Description>A collection of interfaces and classes for the spatial discretization of computational mechanics models</Description>
-    <PackageId>MSolve.Discretization</PackageId>
+    <PackageId>MGroup.MSolve.Discretization</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

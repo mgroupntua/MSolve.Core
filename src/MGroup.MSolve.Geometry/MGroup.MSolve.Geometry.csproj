@@ -7,7 +7,7 @@
     <Description>A collection of interfaces and base classes related to geometry entities necessary for modeling computational mechanics problems</Description>
     <PackageProjectUrl>http://mgroup.ntua.gr/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
-    <PackageId>MSolve.Geometry</PackageId>
+    <PackageId>MGroup.MSolve.Geometry</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

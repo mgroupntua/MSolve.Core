@@ -31,6 +31,5 @@ namespace MGroup.MSolve.Logging.DomainDecomposition
 		void IncrementAnalysisStep();
 		void WriteToFile(string path, string title, bool append);
 		void WriteAggregatesToFile(string path, string title, bool append);
-		void WriteHeader(StreamWriter writer, string title);
 	}
 }

@@ -7,7 +7,7 @@
     <Description>A series of interfaces and classes related to the solution of the linear systems arising from the numerical formulation of computational mechanics problems</Description>
     <PackageProjectUrl>http://mgroup.ntua.gr/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
-    <PackageId>MSolve.Solvers</PackageId>
+    <PackageId>MGroup.MSolve.Solvers</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
