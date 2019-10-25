@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Serafeim Bakalakos, Dimitris Tsapetis, George Stavroulakis</Authors>
+    <Product>MSolve.Core - Discretization</Product>
+    <PackageProjectUrl>http://mgroup.ntua.gr</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
+    <Description>A collection of interfaces and classes for the spatial discretization of computational mechanics models</Description>
   </PropertyGroup>
 
   <ItemGroup>

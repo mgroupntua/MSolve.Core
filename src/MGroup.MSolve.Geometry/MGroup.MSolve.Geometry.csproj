@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Serafeim Bakalakos, Dimitris Tsapetis, Theofilos Manitaras</Authors>
+    <Product>MSolve.Core - Geometry</Product>
+    <Description>A collection of interfaces and base classes related to geometry entities necessary for modeling computational mechanics problems</Description>
+    <PackageProjectUrl>http://mgroup.ntua.gr/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
