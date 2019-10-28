@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MGroup.MSolve.Discretization.Interfaces;
 
-namespace MGroup.MSolve.Solvers
+namespace MGroup.MSolve.Solution
 {
     /// <summary>
     /// Builder for classes implementing <see cref="ISolver"/>.

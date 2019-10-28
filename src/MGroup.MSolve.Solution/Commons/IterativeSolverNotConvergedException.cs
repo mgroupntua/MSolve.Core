@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MGroup.MSolve.Solvers.Commons
+namespace MGroup.MSolve.Solution.Commons
 {
     /// <summary>
     /// The exception that is thrown when an iterative solver or a domain decomposition solver that uses iterative methods 

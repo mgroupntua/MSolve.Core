@@ -3,7 +3,7 @@ using MGroup.LinearAlgebra.Matrices;
 using MGroup.MSolve.Discretization.FreedomDegrees;
 using MGroup.MSolve.Discretization.Interfaces;
 
-namespace MGroup.MSolve.Solvers.Assemblers
+namespace MGroup.MSolve.Solution.Assemblers
 {
 	public interface IGlobalMatrixRectangularAssembler<TMatrix> where TMatrix:IMatrix
 	{

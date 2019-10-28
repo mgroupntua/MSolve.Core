@@ -1,4 +1,4 @@
-﻿namespace MGroup.MSolve.Solvers.LinearSystems
+namespace MGroup.MSolve.Solution.LinearSystems
 {
     /// <summary>
     /// Objects implementing this interface will be notifying before <see cref="ILinearSystem.Matrix"/> is modified.

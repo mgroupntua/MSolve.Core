@@ -4,7 +4,7 @@ using MGroup.MSolve.Discretization.FreedomDegrees;
 using MGroup.MSolve.Discretization.Interfaces;
 
 //TODO: not sure this interface is required
-namespace MGroup.MSolve.Solvers.Assemblers
+namespace MGroup.MSolve.Solution.Assemblers
 {
     /// <summary>
     /// Builds the matrix of the linear system that will be solved.

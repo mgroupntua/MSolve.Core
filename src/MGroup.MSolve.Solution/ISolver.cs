@@ -5,11 +5,11 @@ using MGroup.MSolve.Discretization.Commons;
 using MGroup.MSolve.Discretization.FreedomDegrees;
 using MGroup.MSolve.Discretization.Interfaces;
 using MGroup.MSolve.Logging.DomainDecomposition;
-using MGroup.MSolve.Solvers.LinearSystems;
+using MGroup.MSolve.Solution.LinearSystems;
 
 //TODO: perhaps the solver should expose the assembler, instead of wrapping it. The assembler's interface would have to be 
 //      simplified a bit though. That would violate LoD, but so does MSolve in general.
-namespace MGroup.MSolve.Solvers
+namespace MGroup.MSolve.Solution
 {
     /// <summary>
     /// Helps translate the physical model into a linear system and then solves the latter. 

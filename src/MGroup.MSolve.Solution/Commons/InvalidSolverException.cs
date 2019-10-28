@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace MGroup.MSolve.Solvers.Commons
+namespace MGroup.MSolve.Solution.Commons
 {
     /// <summary>
     /// The exception that is thrown when the chosen solver does not match the discrete model. 

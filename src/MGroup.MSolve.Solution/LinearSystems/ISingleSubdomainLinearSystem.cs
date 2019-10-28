@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using MGroup.LinearAlgebra.Vectors;
@@ -6,7 +6,7 @@ using MGroup.LinearAlgebra.Vectors;
 //TODO: The linear system classes need to be redesigned taking into account a) 1 linear system per subdomain, b) 1 IVector that
 //      hides many concrete Vectors for the subdomains.
 //TODO: I would like to make this internal, but it does not work.
-namespace MGroup.MSolve.Solvers.LinearSystems
+namespace MGroup.MSolve.Solution.LinearSystems
 {
     public interface ISingleSubdomainLinearSystem : ILinearSystem
     {
