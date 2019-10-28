@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>George Stavroulakis</Authors>
+    <Product>MSolve</Product>
+    <Description>A collection of interfaces for defining custom-tailored worklflows for the numerical solution of PDEs pertaining to computational mechanics problems</Description>
+    <PackageProjectUrl>http://mgroup.ntua.gr</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
+    <PackageIconUrl>https://github.com/mgroupntua/MSolve.Core/raw/develop/MSolveCoreAnalysisWorkflow.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

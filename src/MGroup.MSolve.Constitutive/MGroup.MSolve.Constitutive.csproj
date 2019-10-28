@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>George Stavroulakis, Gerasimos Sotiropoulos</Authors>
+    <Product>MSolve</Product>
+    <Description>A collection of Interfaces for defining constitutive relations of meshes pertaining to computational mechanics problems</Description>
+    <PackageProjectUrl>http://mgroup.ntua.gr</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
