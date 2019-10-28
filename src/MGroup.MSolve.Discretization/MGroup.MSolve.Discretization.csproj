@@ -8,6 +8,7 @@
     <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
     <Description>A collection of interfaces and classes for the spatial discretization of computational mechanics models</Description>
     <PackageId>MGroup.MSolve.Discretization</PackageId>
+    <PackageIconUrl>https://github.com/mgroupntua/MSolve.Core/raw/develop/MSolveCoreAnalysisDiscretization.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

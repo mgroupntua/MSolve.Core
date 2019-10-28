@@ -8,6 +8,7 @@
     <PackageProjectUrl>http://mgroup.ntua.gr</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
     <PackageId>MGroup.MSolve.Logging</PackageId>
+    <PackageIconUrl>https://github.com/mgroupntua/MSolve.Core/raw/develop/MSolveCoreAnalysisLogging.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

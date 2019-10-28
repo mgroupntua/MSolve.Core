@@ -10,6 +10,7 @@
     <PackageId>MGroup.MSolve.Solution</PackageId>
     <AssemblyName>MGroup.MSolve.Solution</AssemblyName>
     <RootNamespace>MGroup.MSolve.Solution</RootNamespace>
+    <PackageIconUrl>https://github.com/mgroupntua/MSolve.Core/raw/develop/MSolveCoreAnalysisSolution.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

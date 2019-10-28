@@ -8,6 +8,7 @@
     <PackageProjectUrl>http://mgroup.ntua.gr/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
     <PackageId>MGroup.MSolve.Geometry</PackageId>
+    <PackageIconUrl>https://github.com/mgroupntua/MSolve.Core/raw/develop/MSolveCoreAnalysisGeometry.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
