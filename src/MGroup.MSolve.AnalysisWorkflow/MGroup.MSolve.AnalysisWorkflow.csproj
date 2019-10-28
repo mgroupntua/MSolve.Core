@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MGroup.LinearAlgebra" Version="1.0.251" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MGroup.MSolve.Discretization\MGroup.MSolve.Discretization.csproj" />
+    <ProjectReference Include="..\MGroup.MSolve.Logging\MGroup.MSolve.Logging.csproj" />
+    <ProjectReference Include="..\MGroup.MSolve.Solution\MGroup.MSolve.Solution.csproj" />
+  </ItemGroup>
+
+</Project>
