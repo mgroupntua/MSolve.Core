@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MGroup.MSolve.Discretization.Interfaces;
+using System.Collections.Generic;
 
 //TODO: abstract this in order to be used with points in various coordinate systems
 //TODO: perhaps the origin should be (0.0, 0.0) and the meshes could then be transformed. Abaqus does something similar with its

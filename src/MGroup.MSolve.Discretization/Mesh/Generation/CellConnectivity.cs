@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MGroup.MSolve.Discretization.Interfaces;
+using System.Collections.Generic;
 
 //TODO: this should be moved to Geometry.Shapes once Node2D has been replaced with a generic IPoint
 namespace MGroup.MSolve.Discretization.Mesh.Generation

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MGroup.MSolve.Discretization.Interfaces;
+using System.Collections.Generic;
 
 //TODO: Once FEM.Entities.Node is purged, the generic parameter TVertex should be constrained by IPoint. 
 //      Also Mesh generation should be moved to Geometry project.

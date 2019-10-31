@@ -1,7 +1,4 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using MGroup.MSolve.Discretization.Interfaces;
 
 namespace MGroup.MSolve.Discretization.Mesh.Generation.Custom
 {

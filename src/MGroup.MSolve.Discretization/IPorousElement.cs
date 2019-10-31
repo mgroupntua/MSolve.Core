@@ -1,6 +1,6 @@
 using MGroup.LinearAlgebra.Matrices;
 
-namespace MGroup.MSolve.Discretization.Interfaces
+namespace MGroup.MSolve.Discretization
 {
 	public interface IPorousElement : IElementType
 	{

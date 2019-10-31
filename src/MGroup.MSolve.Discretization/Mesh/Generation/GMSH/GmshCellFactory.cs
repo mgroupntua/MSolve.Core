@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using MGroup.MSolve.Discretization.Interfaces;
 
 //TODO: Extend this works to 3D cells
 namespace MGroup.MSolve.Discretization.Mesh.Generation.GMSH
