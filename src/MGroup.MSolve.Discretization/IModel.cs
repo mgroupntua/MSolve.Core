@@ -5,8 +5,7 @@ using MGroup.MSolve.Discretization.DofOrdering;
 
 namespace MGroup.MSolve.Discretization
 {
-    public delegate Dictionary<int, SparseVector> NodalLoadsToSubdomainsDistributor(
-        Table<INode, IDofType, double> globalNodalLoads);
+    public delegate Dictionary<int, SparseVector> NodalLoadsToSubdomainsDistributor(Table<INode, IDofType, double> globalNodalLoads);
 
     public interface IModel
     {

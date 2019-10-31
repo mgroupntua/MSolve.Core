@@ -6,20 +6,22 @@ namespace MGroup.MSolve.Solution.Commons
     /// The exception that is thrown when the chosen solver does not match the discrete model. 
     /// Authors: Serafeim Bakalakos
     /// </summary>
-    public class InvalidSolverException: Exception 
+    public class InvalidSolverException : Exception 
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidSolverException"/> class.
         /// </summary>
         public InvalidSolverException()
-        { }
+        {
+		}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidSolverException"/> class with a specified error message.
         /// </summary>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         public InvalidSolverException(string message) : base(message)
-        { }
+        {
+		}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidSolverException"/> class with a specified error message 
@@ -31,6 +33,7 @@ namespace MGroup.MSolve.Solution.Commons
         /// the current exception is raised in a catch block that handles the inner exception. 
         /// </param>
         public InvalidSolverException(string message, Exception inner) : base(message, inner)
-        { }
+        {
+		}
     }
 }

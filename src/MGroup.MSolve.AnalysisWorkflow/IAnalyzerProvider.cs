@@ -4,9 +4,7 @@ namespace MGroup.MSolve.AnalysisWorkflow
 	{
 		//TODO: This should be accessed by the solver. Any element matrix providers should be passed there.
 		IDirichletEquivalentLoadsAssembler DirichletLoadsAssembler { get; }
-
 		void ClearMatrices();
-
 		void Reset();
 	}
 }

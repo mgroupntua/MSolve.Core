@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MGroup.MSolve.Discretization.Commons;
-using MGroup.MSolve.Discretization.Interfaces;
 
 namespace MGroup.MSolve.Discretization
 {
@@ -13,11 +12,13 @@ namespace MGroup.MSolve.Discretization
     /// <typeparam name="TDof">A freedom degree type.</typeparam>
     public class DofTable: Table<INode, IDofType, int>
     {
-        public DofTable(): base()
-        { }
+        public DofTable() : base()
+        {
+		}
 
-        private DofTable(Dictionary<INode, Dictionary<IDofType, int>> data): base(data)
-        { }
+        private DofTable(Dictionary<INode, Dictionary<IDofType, int>> data) : base(data)
+        {
+		}
 
         //TODO: this would be nice to have in Table too.
         public DofTable DeepCopy()
