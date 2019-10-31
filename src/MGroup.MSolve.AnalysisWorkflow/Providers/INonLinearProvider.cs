@@ -1,7 +1,7 @@
 using MGroup.LinearAlgebra.Vectors;
 using MGroup.MSolve.Discretization;
 
-namespace MGroup.MSolve.AnalysisWorkflow
+namespace MGroup.MSolve.AnalysisWorkflow.Providers
 {
 	public interface INonLinearProvider : IAnalyzerProvider
 	{

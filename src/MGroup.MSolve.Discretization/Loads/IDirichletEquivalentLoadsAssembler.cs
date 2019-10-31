@@ -1,8 +1,6 @@
 using MGroup.LinearAlgebra.Vectors;
-using MGroup.MSolve.Discretization;
 
-//TODO:  delete the original one (IEquivalentLoadsAssembler) in FEM.Interfaces
-namespace MGroup.MSolve.AnalysisWorkflow
+namespace MGroup.MSolve.Discretization.Loads
 {
 	public interface IDirichletEquivalentLoadsAssembler
 	{

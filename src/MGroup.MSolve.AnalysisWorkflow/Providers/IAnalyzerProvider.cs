@@ -1,4 +1,6 @@
-namespace MGroup.MSolve.AnalysisWorkflow
+using MGroup.MSolve.Discretization.Loads;
+
+namespace MGroup.MSolve.AnalysisWorkflow.Providers
 {
 	public interface IAnalyzerProvider
 	{

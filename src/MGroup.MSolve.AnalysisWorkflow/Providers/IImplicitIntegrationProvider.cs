@@ -10,7 +10,7 @@ using MGroup.MSolve.Discretization;
 //TODO: Perhaps the providers should not hold references to the linear systems. Instead they would return vectors/matrices to
 //      the analyzers (or the vectors/matrices would be passed in and overwritten).
 //TODO: Rename the Get~ methods to Calculate or something similar.
-namespace MGroup.MSolve.AnalysisWorkflow
+namespace MGroup.MSolve.AnalysisWorkflow.Providers
 {
 	public interface IImplicitIntegrationProvider : IAnalyzerProvider
 	{
