@@ -1,7 +1,7 @@
-﻿//WARNING: DofTable depends on this being immutable.
+//WARNING: DofTable depends on this being immutable.
 //TODO: The implementing classes (structural, thermal, pore pressure) should be moved to projects that correspond to that 
 //      differential equation.  
-namespace MGroup.MSolve.Discretization.FreedomDegrees
+namespace MGroup.MSolve.Discretization
 {
     /// <summary>
     /// Tagging interface for degrees of freedom. Concrete implementations must be immutable.

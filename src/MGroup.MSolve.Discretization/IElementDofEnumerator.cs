@@ -1,5 +1,4 @@
 using MGroup.LinearAlgebra.Matrices;
-using MGroup.MSolve.Discretization.FreedomDegrees;
 using System.Collections.Generic;
 
 namespace MGroup.MSolve.Discretization

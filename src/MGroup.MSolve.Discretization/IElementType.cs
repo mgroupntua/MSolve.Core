@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using MGroup.LinearAlgebra.Matrices;
-using MGroup.MSolve.Discretization.FreedomDegrees;
 using MGroup.MSolve.Discretization.Loads;
 using MGroup.MSolve.Discretization.Mesh;
 

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MGroup.MSolve.Discretization.Interfaces;
-
 //TODO: many of these operations would be more efficient if done simultaneously for free and constrained dofs.
-namespace MGroup.MSolve.Discretization.FreedomDegrees
+namespace MGroup.MSolve.Discretization.DofOrdering
 {
     public interface ISubdomainConstrainedDofOrdering
     {

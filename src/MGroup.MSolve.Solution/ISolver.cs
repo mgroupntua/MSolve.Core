@@ -3,7 +3,7 @@ using MGroup.LinearAlgebra.Matrices;
 using MGroup.LinearAlgebra.Vectors;
 using MGroup.MSolve.Discretization;
 using MGroup.MSolve.Discretization.Commons;
-using MGroup.MSolve.Discretization.FreedomDegrees;
+using MGroup.MSolve.Discretization.DofOrdering;
 using MGroup.MSolve.Logging.DomainDecomposition;
 using MGroup.MSolve.Solution.LinearSystems;
 

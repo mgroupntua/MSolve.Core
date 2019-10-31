@@ -1,12 +1,9 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using MGroup.LinearAlgebra.Vectors;
-using MGroup.MSolve.Discretization.Interfaces;
 
 //TODO: Perhaps the ISubdomainDofOrderings should be accessed through IClusterDofOrdering. For now they are stored in Subdomain
 //TODO: Perhaps this doulbe be IObservable and noty observers (e.g. solver, assembler) when the ordering changes.
-namespace MGroup.MSolve.Discretization.FreedomDegrees
+namespace MGroup.MSolve.Discretization.DofOrdering
 {
     public interface IGlobalFreeDofOrdering
     {

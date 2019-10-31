@@ -1,5 +1,3 @@
-using MGroup.MSolve.Discretization.FreedomDegrees;
-
 namespace MGroup.MSolve.Discretization
 {
     public interface IMassAccelerationHistoryLoad

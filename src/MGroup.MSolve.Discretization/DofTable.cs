@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MGroup.MSolve.Discretization.Commons;
 using MGroup.MSolve.Discretization.Interfaces;
 
-namespace MGroup.MSolve.Discretization.FreedomDegrees
+namespace MGroup.MSolve.Discretization
 {
     /// <summary>
     /// A <see cref="ITable{TRow, TColumn, TValue}"/> that associates the freedom degrees of nodes with their ordinal number.

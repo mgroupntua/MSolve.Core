@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MGroup.LinearAlgebra.Reordering;
 using MGroup.LinearAlgebra.Vectors;
-using MGroup.MSolve.Discretization.Interfaces;
 
 //TODO: Ideally all the relevant methods should return Vector (or at least Vector for element level) 
 //TODO: The map element to subdomain should be a BiList, so that it can be read in both directions and passed to native code 
 //      (e.g. CUDA). It should also be cached for each element, unless there isn't enough memory or if the dof ordering is 
 //      updated frequently. It can also be used for mapping vectors (e.g. ExtractVectorElementFromSubdomain), not only the
 //      stiffness matrix.
-namespace MGroup.MSolve.Discretization.FreedomDegrees
+namespace MGroup.MSolve.Discretization.DofOrdering
 {
     public interface ISubdomainFreeDofOrdering
     {

@@ -1,4 +1,4 @@
-using MGroup.MSolve.Discretization.FreedomDegrees;
+using MGroup.MSolve.Discretization.DofOrdering;
 
 namespace MGroup.MSolve.Discretization
 {

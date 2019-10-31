@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MGroup.LinearAlgebra.Vectors;
 using MGroup.MSolve.Discretization.Commons;
-using MGroup.MSolve.Discretization.FreedomDegrees;
+using MGroup.MSolve.Discretization.DofOrdering;
 
 namespace MGroup.MSolve.Discretization
 {

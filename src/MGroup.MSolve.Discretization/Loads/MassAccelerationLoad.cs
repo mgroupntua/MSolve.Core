@@ -1,8 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MGroup.MSolve.Discretization.FreedomDegrees;
-
 namespace MGroup.MSolve.Discretization.Loads
 {
 	public class MassAccelerationLoad

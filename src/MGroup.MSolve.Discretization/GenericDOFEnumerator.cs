@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MGroup.LinearAlgebra.Matrices;
-using MGroup.MSolve.Discretization.FreedomDegrees;
-using MGroup.MSolve.Discretization.Interfaces;
 
 namespace MGroup.MSolve.Discretization
 {

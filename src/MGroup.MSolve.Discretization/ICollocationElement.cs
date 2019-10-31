@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using MGroup.MSolve.Discretization.FreedomDegrees;
 
 namespace MGroup.MSolve.Discretization
 {
