@@ -93,7 +93,7 @@ namespace MGroup.MSolve.Discretization
         }
 
         //TODO: use Table.ModifyValues() for this.
-        internal void ReorderNodeMajor(IReadOnlyList<INode> sortedNodes)
+        public void ReorderNodeMajor(IReadOnlyList<INode> sortedNodes)
         {
             int dofIdx = -1;
             foreach (INode node in sortedNodes)
