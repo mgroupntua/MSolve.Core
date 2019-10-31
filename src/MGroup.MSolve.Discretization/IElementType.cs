@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using MGroup.LinearAlgebra.Matrices;
 using MGroup.MSolve.Discretization.FreedomDegrees;
 using MGroup.MSolve.Discretization.Loads;
 using MGroup.MSolve.Discretization.Mesh;
 
-namespace MGroup.MSolve.Discretization.Interfaces
+namespace MGroup.MSolve.Discretization
 {
     public enum ElementDimensions
     {

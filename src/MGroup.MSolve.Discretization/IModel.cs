@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using MGroup.LinearAlgebra.Vectors;
 using MGroup.MSolve.Discretization.Commons;
 using MGroup.MSolve.Discretization.FreedomDegrees;
-using MGroup.MSolve.FEM.Interfaces;
 
-namespace MGroup.MSolve.Discretization.Interfaces
+namespace MGroup.MSolve.Discretization
 {
     public delegate Dictionary<int, SparseVector> NodalLoadsToSubdomainsDistributor(
         Table<INode, IDofType, double> globalNodalLoads);
@@ -24,6 +23,5 @@ namespace MGroup.MSolve.Discretization.Interfaces
 
         void AssignNodalLoads(NodalLoadsToSubdomainsDistributor distributeNodalLoads);
         void AssignTimeDependentNodalLoads(int timeStep, NodalLoadsToSubdomainsDistributor distributeNodalLoads);
-
     }
 }

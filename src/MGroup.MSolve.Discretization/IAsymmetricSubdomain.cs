@@ -1,8 +1,8 @@
-﻿using MGroup.MSolve.Discretization.FreedomDegrees;
+using MGroup.MSolve.Discretization.FreedomDegrees;
 
-namespace MGroup.MSolve.Discretization.Interfaces
+namespace MGroup.MSolve.Discretization
 {
-	public interface IAsymmetricSubdomain:ISubdomain
+	public interface IAsymmetricSubdomain : ISubdomain
 	{
 		ISubdomainFreeDofOrdering FreeDofRowOrdering { get; set; }
 		ISubdomainFreeDofOrdering FreeDofColOrdering { get; set; }

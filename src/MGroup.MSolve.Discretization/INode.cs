@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace MGroup.MSolve.Discretization.Interfaces
+namespace MGroup.MSolve.Discretization
 {
     public interface INode : IComparable<INode>
     {

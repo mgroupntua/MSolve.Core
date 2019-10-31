@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MGroup.LinearAlgebra.Matrices;
+using MGroup.MSolve.Discretization;
 using MGroup.MSolve.Discretization.FreedomDegrees;
-using MGroup.MSolve.Discretization.Interfaces;
 
 //TODO: not sure this interface is required
 namespace MGroup.MSolve.Solution.Assemblers

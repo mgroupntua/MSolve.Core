@@ -1,7 +1,7 @@
 namespace MGroup.MSolve.AnalysisWorkflow
 {
 	using MGroup.LinearAlgebra.Vectors;
-	using MGroup.MSolve.Discretization.Interfaces;
+	using MGroup.MSolve.Discretization;
 
 	public interface INonLinearProvider : IAnalyzerProvider
 	{

@@ -1,7 +1,7 @@
 namespace MGroup.MSolve.AnalysisWorkflow
 {
 	using MGroup.LinearAlgebra.Matrices;
-	using MGroup.MSolve.Discretization.Interfaces;
+	using MGroup.MSolve.Discretization;
 
 	public interface IReferenceVolumeElement
 	{

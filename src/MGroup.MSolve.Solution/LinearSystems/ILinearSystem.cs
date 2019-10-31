@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MGroup.LinearAlgebra.Matrices;
 using MGroup.LinearAlgebra.Vectors;
-using MGroup.MSolve.Discretization.Interfaces;
+using MGroup.MSolve.Discretization;
 
 //TODO: setters should be removed, since they force the implementation (or the solver) to cast. Currently there is no
 //      way around it though.

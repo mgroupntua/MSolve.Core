@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using MGroup.LinearAlgebra.Vectors;
 
-namespace MGroup.MSolve.Logging.Interfaces
+namespace MGroup.MSolve.Logging
 {
     public interface IAnalyzerLog
     {

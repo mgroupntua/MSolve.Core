@@ -1,13 +1,9 @@
-﻿using MGroup.MSolve.Geometry.Coordinates;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using DotNumerics.Optimization.TN;
 using MGroup.MSolve.Discretization.FreedomDegrees;
 
-namespace MGroup.MSolve.Discretization.Interfaces
+namespace MGroup.MSolve.Discretization
 {
-    public interface ICollocationElement:IElement
+    public interface ICollocationElement : IElement
     {
         INode CollocationPoint { get; set; }
 

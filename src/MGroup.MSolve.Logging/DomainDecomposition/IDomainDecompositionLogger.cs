@@ -1,4 +1,4 @@
-﻿using MGroup.MSolve.Discretization.Interfaces;
+using MGroup.MSolve.Discretization;
 
 namespace MGroup.MSolve.Logging.DomainDecomposition
 {

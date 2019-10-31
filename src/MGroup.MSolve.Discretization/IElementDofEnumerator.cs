@@ -1,8 +1,8 @@
-﻿using MGroup.LinearAlgebra.Matrices;
+using MGroup.LinearAlgebra.Matrices;
 using MGroup.MSolve.Discretization.FreedomDegrees;
 using System.Collections.Generic;
 
-namespace MGroup.MSolve.Discretization.Interfaces
+namespace MGroup.MSolve.Discretization
 {
 	public interface IElementDofEnumerator
 	{

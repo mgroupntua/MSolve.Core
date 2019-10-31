@@ -1,6 +1,6 @@
 namespace MGroup.MSolve.AnalysisWorkflow
 {
-	using MGroup.MSolve.Discretization.Interfaces;
+	using MGroup.MSolve.Discretization;
 
 	public interface IKinematicRelationsStrategy
 	{

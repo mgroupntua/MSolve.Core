@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MGroup.MSolve.Discretization.FreedomDegrees;
-using MGroup.MSolve.Discretization.Interfaces;
 
-namespace MGroup.MSolve.FEM.Interfaces
+namespace MGroup.MSolve.Discretization
 {
     public interface IMassAccelerationHistoryLoad
     {

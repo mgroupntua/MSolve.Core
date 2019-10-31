@@ -2,8 +2,7 @@
 namespace MGroup.MSolve.AnalysisWorkflow
 {
 	using System.Collections.Generic;
-
-	using MGroup.MSolve.Logging.Interfaces;
+	using MGroup.MSolve.Logging;
 
 	public interface IAnalyzer
 	{
