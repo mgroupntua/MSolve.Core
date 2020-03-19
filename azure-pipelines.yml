@@ -29,8 +29,7 @@ steps:
   inputs:
     command: 'restore'
     verbosityRestore: 'Normal'
-    feedRestore: 'MGroup'
-
+    feedsToUse: 'config'
 
 - task: SonarCloudPrepare@1
   displayName: "Prepares SonarCloud analysis"
