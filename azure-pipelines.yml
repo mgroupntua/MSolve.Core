@@ -30,6 +30,7 @@ steps:
     command: 'restore'
     verbosityRestore: 'Normal'
     feedsToUse: 'config'
+    nugetConfigPath: 'NuGet.config'
 
 - task: SonarCloudPrepare@1
   displayName: "Prepares SonarCloud analysis"
