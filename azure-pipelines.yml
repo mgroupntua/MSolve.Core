@@ -29,7 +29,7 @@ steps:
   inputs:
     command: 'restore'
     verbosityRestore: 'Normal'
-    feedRestore: 'MSolve-Nugets'
+    feedRestore: 'MGroup'
 
 
 - task: SonarCloudPrepare@1
