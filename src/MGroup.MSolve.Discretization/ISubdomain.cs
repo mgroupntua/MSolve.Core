@@ -49,5 +49,8 @@ namespace MGroup.MSolve.Discretization
         void ScaleConstraints(double scalingFactor); //TODO: this should be done by a dedicated class instead of the subdomain
 
         void SaveMaterialState();
-    }
+
+		void SaveIncrementalContraints();
+
+	}
 }
