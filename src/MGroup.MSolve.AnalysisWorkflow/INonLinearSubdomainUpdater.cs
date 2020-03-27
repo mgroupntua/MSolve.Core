@@ -8,6 +8,5 @@ namespace MGroup.MSolve.AnalysisWorkflow
 		IVector GetRhsFromSolution(IVectorView solution, IVectorView dSolution);
 		void UpdateState();
 		void ResetState();
-		void SaveIncrementalContraints();
 	}
 }
