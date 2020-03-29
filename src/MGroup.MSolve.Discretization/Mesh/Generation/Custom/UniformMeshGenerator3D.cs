@@ -80,17 +80,18 @@ namespace MGroup.MSolve.Discretization.Mesh.Generation.Custom
                     {
                         int cell = k * cellsPerX * cellsPerY + j * cellsPerX + i;
                         int firstVertex = k * verticesPerX * verticesPerY + j * verticesPerX + i;
-                        var verticesOfCell = new int[]                                 // Node order for Hexa8
+						var verticesOfCell = new int[]                                 // Node order for Hexa8
                         {
+							firstVertex + verticesPerX * verticesPerY + verticesPerY + 1,   // ( 1,  1,  1)
+							firstVertex + verticesPerX * verticesPerY + verticesPerY,        // (-1,  1,  1)
+							firstVertex + verticesPerX * verticesPerY,                      // (-1, -1,  1)
+							firstVertex + verticesPerX * verticesPerY + 1,                  // ( 1, -1,  1)
+
+							firstVertex + verticesPerY + 1,                                 // ( 1,  1, -1)
+							firstVertex + verticesPerY,                                     // (-1,  1, -1)
                             firstVertex,                                                    // (-1, -1, -1)
                             firstVertex + 1,                                                // ( 1, -1, -1)
-                            firstVertex + verticesPerY + 1,                                 // ( 1,  1, -1)
-                            firstVertex + verticesPerY,                                     // (-1,  1, -1)
-                            firstVertex + verticesPerX * verticesPerY,                      // (-1, -1,  1)
-                            firstVertex + verticesPerX * verticesPerY + 1,                  // ( 1, -1,  1)
-                            firstVertex + verticesPerX * verticesPerY + verticesPerY + 1,   // ( 1,  1,  1)
-                            firstVertex + verticesPerX * verticesPerY + verticesPerY        // (-1,  1,  1)
-                        };
+						};
                         cells[cell] = new CellConnectivity<TNode>(CellType.Hexa8, 
                             verticesOfCell.Select(idx => allVertices[idx]).ToArray()); // row major
                     }
