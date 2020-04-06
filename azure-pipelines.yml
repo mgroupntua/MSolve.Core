@@ -52,7 +52,7 @@ steps:
   displayName: "Build projects"
   inputs:
     command: 'build'
-    arguments: '/p:AssemblyVersion=$(GitVersion.SemVer)'
+    arguments: '/p:AssemblyVersion=$(GitVersion.AssemblySemVer)'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'GitVersion.SemVer'
     verbosityPack: 'Minimal'
