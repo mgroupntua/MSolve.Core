@@ -14,8 +14,8 @@ namespace MGroup.MSolve.Discretization.Mesh
         // 0 ---- 1
         Line2,
 		
-		// 0----1----2
-		Line3,
+	// 0----1----2
+	Line3,
 
         // 3 ---- 2							
         // |      |                            
