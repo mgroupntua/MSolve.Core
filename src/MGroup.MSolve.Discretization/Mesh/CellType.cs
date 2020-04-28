@@ -12,7 +12,10 @@ namespace MGroup.MSolve.Discretization.Mesh
     public enum CellType
     {
         // 0 ---- 1
-        Line,
+        Line2,
+		
+	// 0----1----2
+	Line3,
 
         // 3 ---- 2							
         // |      |                            
