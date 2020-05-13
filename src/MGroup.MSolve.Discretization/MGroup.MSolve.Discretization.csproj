@@ -15,8 +15,4 @@
     <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.21" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MGroup.MSolve.Geometry\MGroup.MSolve.Geometry.csproj" />
-  </ItemGroup>
-
 </Project>

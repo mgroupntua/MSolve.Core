@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MGroup.MSolve.Discretization\MGroup.MSolve.Discretization.csproj" />
-    <ProjectReference Include="..\MGroup.MSolve.Geometry\MGroup.MSolve.Geometry.csproj" />
     <ProjectReference Include="..\MGroup.MSolve.Logging\MGroup.MSolve.Logging.csproj" />
   </ItemGroup>
 </Project>

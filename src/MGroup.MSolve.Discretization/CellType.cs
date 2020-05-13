@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MGroup.MSolve.Discretization.Mesh
+namespace MGroup.MSolve.Discretization
 {
     /// <summary>
     /// Defines the shape of a cell only. Since there are no dependencies, it can also be used to map corresponding cell/element 
@@ -14,8 +14,8 @@ namespace MGroup.MSolve.Discretization.Mesh
         // 0 ---- 1
         Line2,
 		
-	// 0----1----2
-	Line3,
+		// 0----1----2
+		Line3,
 
         // 3 ---- 2							
         // |      |                            

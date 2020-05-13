@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MGroup.MSolve.Geometry.Coordinates;
 
 namespace MGroup.MSolve.Discretization
 {
@@ -15,10 +14,5 @@ namespace MGroup.MSolve.Discretization
             double dz = node1.Z - node2.Z;
             return Math.Sqrt(dx * dx + dy * dy + dz * dz);
         }
-
-        public static CartesianPoint ToCartesianPoint(this INode node) => new CartesianPoint(node.X, node.Y);
-
-        public static IReadOnlyList<CartesianPoint> ToCartesianPoints<TNode>(this IReadOnlyList<TNode> nodes) where TNode : INode
-            => nodes.Select(node => new CartesianPoint(node.X, node.Y)).ToArray();
     }
 }
