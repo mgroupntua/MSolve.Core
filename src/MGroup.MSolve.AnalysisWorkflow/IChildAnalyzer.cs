@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+
+using MGroup.LinearAlgebra.Vectors;
+
 namespace MGroup.MSolve.AnalysisWorkflow
 {
 	public interface IChildAnalyzer: IAnalyzer
@@ -6,5 +10,6 @@ namespace MGroup.MSolve.AnalysisWorkflow
 		//      parent analyzer to the child analyzers constructor, before the parent analyzer constructor ends. However that is
 		//      too much trouble without a specific need for that degree of immutability.
 		IParentAnalyzer ParentAnalyzer { get; set; }
+		Dictionary<int, IVector> Responses { get; set; }
 	}
 }
