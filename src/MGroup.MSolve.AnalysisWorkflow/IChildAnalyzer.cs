@@ -10,6 +10,6 @@ namespace MGroup.MSolve.AnalysisWorkflow
 		//      parent analyzer to the child analyzers constructor, before the parent analyzer constructor ends. However that is
 		//      too much trouble without a specific need for that degree of immutability.
 		IParentAnalyzer ParentAnalyzer { get; set; }
-		Dictionary<int, IVector> TotalSolution { get; set; }
+		Dictionary<int, IVector> Responses { get; set; }
 	}
 }
