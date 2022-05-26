@@ -7,6 +7,8 @@ namespace MGroup.MSolve.Geometry
 {
     /**
      * Class for quaternions to represent finite rotations.
+     *
+     * @author Theofilos Manitaras
      */
     public class Quaternion
     {
