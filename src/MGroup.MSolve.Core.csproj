@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>George Stavroulakis, Serafeim Bakalakos, Dimitris Tsapetis</Authors>
+    <Product>MSolve.Core</Product>
+    <PackageProjectUrl>http://mgroup.ntua.gr</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
+    <Description>A set of interfaces and classes for the workflow definition of MSolve</Description>
+    <PackageId>MGroup.MSolve.Core</PackageId>
+    <PackageIconUrl>https://github.com/mgroupntua/MSolve.Core/raw/develop/MSolveCore.png</PackageIconUrl>  
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.52" />
+    <PackageReference Include="Triangle" Version="0.0.6-Beta3" />
+  </ItemGroup>
+
+	<ItemGroup>
+	  <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGithub)">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
+  
+</Project>
