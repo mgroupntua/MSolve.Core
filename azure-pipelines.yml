@@ -81,7 +81,7 @@ steps:
     command: 'pack'
     arguments: '--nologo --no-build --no-restore'
     versioningScheme: 'byEnvVar'
-    versionEnvVar: 'Build.BuildNumber'
+    versionEnvVar: 'GitVersion.SemVer'
     verbosityPack: 'Minimal'
 
 - task: PublishBuildArtifacts@1
