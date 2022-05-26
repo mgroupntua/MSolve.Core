@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using MGroup.LinearAlgebra;
 using MGroup.LinearAlgebra.Matrices;
@@ -7,8 +7,6 @@ namespace MGroup.MSolve.Geometry
 {
     /**
      * Class for quaternions to represent finite rotations.
-     *
-     * @author Theofilos Manitaras
      */
     public class Quaternion
     {
