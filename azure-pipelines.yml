@@ -4,12 +4,12 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
 trigger:
-- develop-0.2.0
+- develop
 
 pr:
   branches:
     include:
-    - develop-0.2.0
+    - develop
 
 pool:
   vmImage: 'windows-2019'
