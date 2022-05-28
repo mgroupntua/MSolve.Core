@@ -59,11 +59,18 @@ steps:
   displayName: "Build projects"
   inputs:
     command: 'build'
-    arguments: '--no-restore --nologo /p:AssemblyVersion=$(GitVersion.AssemblySemVer)'
+    arguments: '--no-restore --nologo /p:AssemblyVersion=$(GitVersion.AssemblySemVer) /p:SourceLinkCreate=true'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'Build.BuildNumber'
     verbosityPack: 'Minimal'
     configuration: '$(buildConfiguration)'
+
+- task: PublishSymbols@2
+  displayName: "Publish symbols to Azure Devops artifacts"
+  inputs:
+    SearchPattern: '**/bin/**/*.pdb'
+    IndexSources: false
+    SymbolServerType: 'TeamServices'
 
 - task: SonarCloudAnalyze@1
   displayName: "Performs SonarCloud Analysis"
