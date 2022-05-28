@@ -17,10 +17,10 @@ pool:
 variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  Version: '1.0.$(Build.BuildId)'
-  Major: '1'
-  Minor: '0'
-  Patch: '$(Build.BuildId)'
+#  Version: '1.0.$(Build.BuildId)'
+#  Major: '1'
+#  Minor: '0'
+#  Patch: '$(Build.BuildId)'
 
 steps:
 - task: PowerShell@2
