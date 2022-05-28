@@ -14,14 +14,7 @@
   <ItemGroup>
     <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.52" />
     <PackageReference Include="Triangle" Version="0.0.6-Beta3" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
   </ItemGroup>
-
-	<ItemGroup>
-	  <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
-	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGithub)">
-		<PrivateAssets>all</PrivateAssets>
-		<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-	  </PackageReference>
-	</ItemGroup>
   
 </Project>
