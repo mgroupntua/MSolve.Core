@@ -59,9 +59,9 @@ steps:
   displayName: "Build projects"
   inputs:
     command: 'build'
-    arguments: '--no-restore --nologo /p:AssemblyVersion=$(GitVersion.SemVer) /p:SourceLinkCreate=true'
+    arguments: '--no-restore --nologo /p:AssemblyVersion=$(GitVersion.AssemblySemVer) /p:SourceLinkCreate=true'
     versioningScheme: 'byEnvVar'
-    versionEnvVar: 'GitVersion.SemVer'
+    versionEnvVar: 'GitVersion.AssemblySemVer'
     verbosityPack: 'Minimal'
     configuration: '$(buildConfiguration)'
 
