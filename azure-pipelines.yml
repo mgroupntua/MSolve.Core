@@ -16,7 +16,7 @@ pool:
 
 variables:
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  buildConfiguration: 'Debug'
   Version: '1.0.$(Build.BuildId)'
   Major: '1'
   Minor: '0'
