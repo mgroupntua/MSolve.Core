@@ -102,7 +102,6 @@ steps:
     feedPublish: 'MSolve/MGroup'
 
 - task: DotNetCoreCLI@2
-  enabled: false
   condition: ne(variables['Build.Reason'], 'PullRequest')
   name: dotnetPushSymbolPublic
   displayName: "Publishes symbol nugets"
