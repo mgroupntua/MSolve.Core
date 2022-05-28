@@ -34,7 +34,7 @@ steps:
   displayName: Set SemVer from git history and update AssemblyInfo
   inputs:
     targetType: inline
-    script: ../dotnet-gitversion /output buildserver /updateassemblyinfo AssemblyInfo.cs /ensureassemblyinfo
+    script: ../dotnet-gitversion /output buildserver
     pwsh: true
 
 - task: DotNetCoreCLI@2
@@ -59,7 +59,7 @@ steps:
   displayName: "Build projects"
   inputs:
     command: 'build'
-    arguments: '--no-restore --nologo /p:AssemblyVersion=$(GitVersion.AssemblySemVer) /p:SourceLinkCreate=true'
+    arguments: '--no-restore --nologo -p:AssemblyVersion=$(GitVersion.AssemblySemVer) -p:SourceLinkCreate=true'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'GitVersion.AssemblySemVer'
     verbosityPack: 'Minimal'
