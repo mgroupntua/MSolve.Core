@@ -17,10 +17,10 @@ pool:
 variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  Version: '$(GitVersion.Major).$(GitVersion.Minor).$(GitVersion.Patch)'
-  Major: '$(GitVersion.Major)'
-  Minor: '$(GitVersion.Minor)'
-  Patch: '$(GitVersion.Patch)'
+  Version: '0.2.$(Build.BuildId)'
+  Major: '0'
+  Minor: '2'
+  Patch: '$(Build.BuildId)'
 
 steps:
 - task: UseGitVersion@5
