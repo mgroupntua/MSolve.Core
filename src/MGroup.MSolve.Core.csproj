@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -8,7 +8,10 @@
     <RepositoryUrl>https://github.com/mgroupntua/MSolve.Core</RepositoryUrl>
     <Description>A set of interfaces and classes for the workflow definition of MSolve</Description>
     <PackageId>MGroup.MSolve.Core</PackageId>
-    <PackageIconUrl>https://github.com/mgroupntua/MSolve.Core/raw/develop/MSolveCore.png</PackageIconUrl>  
+    <PackageIconUrl>https://github.com/mgroupntua/MSolve.Core/raw/develop/MSolveCore.png</PackageIconUrl>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
   </PropertyGroup>
 
   <ItemGroup>

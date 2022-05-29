@@ -55,22 +55,6 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'MSolve.Core'
 
-#- task: VSBuild@1
-#  displayName: "Build projects"
-#  inputs:
-#    solution: '**\*.sln'
-#    msbuildArgs: '/p:AssemblyVersion=$(GitVersion.AssemblySemVer) /p:Version=$(GitVersion.SemVer) /p:SourceLinkCreate=true'
-#    platform: '$(buildPlatform)'
-#    configuration: '$(buildConfiguration)'
-#    msbuildArchitecture: 'x64'
-
-- task: PowerShell@2
-  displayName: Run GitVersion to set environment variables
-  inputs:
-    targetType: inline
-    script: dotnet gitversion
-    pwsh: true
-    
 - task: DotNetCoreCLI@2
   name: dotnetBuild
   displayName: "Build projects"
