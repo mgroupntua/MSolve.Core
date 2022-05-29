@@ -68,9 +68,15 @@ steps:
 - task: PublishSymbols@2
   displayName: "Publish symbols to Azure Devops artifacts"
   inputs:
+    DetailedLog: true
     SearchPattern: '**/bin/**/*.pdb'
     IndexSources: false
     SymbolServerType: 'TeamServices'
+
+- task: CopyFiles@2
+  inputs:
+    Contents: '*.pdb'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: SonarCloudAnalyze@1
   displayName: "Performs SonarCloud Analysis"
