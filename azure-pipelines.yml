@@ -93,10 +93,19 @@ steps:
   displayName: "Packages new nugets"
   inputs:
     command: 'pack'
-    arguments: '--nologo --no-build --no-restore'
+    arguments: '--nologo --no-restore'
+    nobuild: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'GitVersion.SemVer'
-    verbosityPack: 'Minimal'
+    verbosityPack: 'Normal'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    nobuild: true
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'GitVersion.SemVer'
+    verbosityPack: 'Normal'
 
 - task: PublishBuildArtifacts@1
   name: publishToFeed
