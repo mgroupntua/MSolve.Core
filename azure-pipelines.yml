@@ -73,12 +73,6 @@ steps:
     IndexSources: false
     SymbolServerType: 'TeamServices'
 
-- task: CopyFiles@2
-  displayName: "Copy everything in artifacts staging directory"
-  inputs:
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
 - task: SonarCloudAnalyze@1
   displayName: "Performs SonarCloud Analysis"
 
@@ -98,15 +92,13 @@ steps:
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'GitVersion.SemVer'
     verbosityPack: 'Normal'
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    nobuild: true
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'GitVersion.SemVer'
-    verbosityPack: 'Normal'
 
+- task: CopyFiles@2
+  displayName: "Copy everything in artifacts staging directory"
+  inputs:
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    
 - task: PublishBuildArtifacts@1
   name: publishToFeed
   condition: ne(variables['Build.Reason'], 'PullRequest')
