@@ -31,10 +31,10 @@ steps:
     pwsh: true
 
 - task: PowerShell@2
-  displayName: Set SemVer from git history
+  displayName: Set SemVer from git history and update AssemblyInfo
   inputs:
     targetType: inline
-    script: ../dotnet-gitversion /updateassemblyinfo AssemblyInfo.cs /ensureassemblyinfo /output buildserver 
+    script: ../dotnet-gitversion /updateassemblyinfo AssemblyInfo.cs AssemblyVersionInfo.cs /output buildserver 
     pwsh: true
 
     
