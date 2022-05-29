@@ -74,8 +74,9 @@ steps:
     SymbolServerType: 'TeamServices'
 
 - task: CopyFiles@2
+  displayName: "Copy everything in artifacts staging directory"
   inputs:
-    Contents: '*.pdb'
+    Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: SonarCloudAnalyze@1
