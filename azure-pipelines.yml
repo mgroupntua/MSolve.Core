@@ -34,7 +34,7 @@ steps:
   displayName: Set SemVer from git history
   inputs:
     targetType: inline
-    script: ../dotnet-gitversion /output buildserver
+    script: ../dotnet-gitversion /updateassemblyinfo AssemblyInfo.cs /ensureassemblyinfo /output buildserver 
     pwsh: true
 
     
