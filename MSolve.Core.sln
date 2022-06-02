@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{08DA1471-EAC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MGroup.MSolve.Core", "src\MGroup.MSolve.Core.csproj", "{CF976517-698A-4829-B9D1-2D2ACB1B0E61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSolve.Core.Tests", "tests\MSolve.Core.Tests.csproj", "{84CEA9BB-5975-46D3-BDEA-21A1B90F73BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9B677C77-BFB5-4674-A891-1C1956276441}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{CF976517-698A-4829-B9D1-2D2ACB1B0E61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF976517-698A-4829-B9D1-2D2ACB1B0E61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF976517-698A-4829-B9D1-2D2ACB1B0E61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84CEA9BB-5975-46D3-BDEA-21A1B90F73BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84CEA9BB-5975-46D3-BDEA-21A1B90F73BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84CEA9BB-5975-46D3-BDEA-21A1B90F73BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84CEA9BB-5975-46D3-BDEA-21A1B90F73BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CF976517-698A-4829-B9D1-2D2ACB1B0E61} = {08DA1471-EAC0-4C41-BCDA-AC3544C04EC9}
+		{84CEA9BB-5975-46D3-BDEA-21A1B90F73BD} = {9B677C77-BFB5-4674-A891-1C1956276441}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65770E5A-E644-45FE-B065-54C0E3D6EBB4}
