@@ -19,6 +19,7 @@ namespace MGroup.MSolve.AnalysisWorkflow.Providers
 		//TODO: This should not exist at all. The provider should return the 0th order (stiffness), 1st order (damping) and 2nd
 		//      order matrices (or some matrix representations that can be combined between them and multiplied with vectors).
 		void LinearCombinationOfMatricesIntoEffectiveMatrix(TransientAnalysisCoefficients coefficients);
+		void LinearCombinationOfMatricesIntoEffectiveMatrixNoOverwrite(TransientAnalysisCoefficients coefficients);
 		IGlobalVector FirstOrderDerivativeMatrixVectorProduct(IGlobalVector vector);
 		IGlobalVector SecondOrderDerivativeMatrixVectorProduct(IGlobalVector vector);
 		IGlobalVector GetFirstOrderDerivativeVectorFromBoundaryConditions(double time);
