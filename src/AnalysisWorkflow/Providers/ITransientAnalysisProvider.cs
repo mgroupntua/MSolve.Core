@@ -20,6 +20,7 @@ namespace MGroup.MSolve.AnalysisWorkflow.Providers
 		//      order matrices (or some matrix representations that can be combined between them and multiplied with vectors).
 		void LinearCombinationOfMatricesIntoEffectiveMatrix(TransientAnalysisCoefficients coefficients);
 		void LinearCombinationOfMatricesIntoEffectiveMatrixNoOverwrite(TransientAnalysisCoefficients coefficients);
+		IGlobalVector ZeroOrderDerivativeMatrixVectorProduct(IGlobalVector vector);
 		IGlobalVector FirstOrderDerivativeMatrixVectorProduct(IGlobalVector vector);
 		IGlobalVector SecondOrderDerivativeMatrixVectorProduct(IGlobalVector vector);
 		IGlobalVector GetFirstOrderDerivativeVectorFromBoundaryConditions(double time);
