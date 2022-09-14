@@ -8,6 +8,8 @@ namespace MGroup.MSolve.Solution.LinearSystem
 {
 	public interface IGlobalMatrix : ILinearTransformation
 	{
+		public bool CheckForCompatibility { get; set; }
+
 		IGlobalMatrix Add(IGlobalMatrix otherMatrix) => Axpy(otherMatrix, +1.0);
 
 		void AddIntoThis(IGlobalMatrix otherMatrix) => AxpyIntoThis(otherMatrix, +1.0);
