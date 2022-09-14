@@ -7,12 +7,14 @@ namespace MGroup.MSolve.Solution.LinearSystem
 {
 	public interface IGlobalVector
 	{
+		public bool CheckForCompatibility { get; set; }
+
 		IGlobalVector Add(IGlobalVector otherVector) => Axpy(otherVector, +1.0);
 
 		void AddIntoThis(IGlobalVector otherVector) => AxpyIntoThis(otherVector, +1.0);
 
 		IGlobalVector Axpy(IGlobalVector otherVector, double otherCoefficient)
-			{
+		{
 			IGlobalVector result = Copy();
 			result.AxpyIntoThis(otherVector, otherCoefficient);
 			return result;
