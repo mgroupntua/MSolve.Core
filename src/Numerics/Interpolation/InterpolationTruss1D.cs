@@ -22,6 +22,7 @@ namespace MGroup.MSolve.Numerics.Interpolation
 		private static readonly InterpolationTruss1D uniqueInstance = new InterpolationTruss1D();
 		private readonly ConcurrentDictionary<IQuadrature1D, IReadOnlyList<Matrix>> cachedNaturalGradientsAtGPs;
 		private readonly ConcurrentDictionary<IQuadrature1D, IReadOnlyList<Vector>> cachedFunctionsAtGPs;
+		private readonly Dictionary<IQuadrature1D, IReadOnlyList<Matrix>> cachedN3AtGPs;
 
 		private InterpolationTruss1D()
 		{
@@ -30,6 +31,9 @@ namespace MGroup.MSolve.Numerics.Interpolation
 				new NaturalPoint(-1.0),
 				new NaturalPoint(+1.0)
 			};
+			this.cachedNaturalGradientsAtGPs = new Dictionary<IQuadrature1D, IReadOnlyList<Matrix>>();
+			this.cachedFunctionsAtGPs = new Dictionary<IQuadrature1D, IReadOnlyList<double[]>>();
+			this.cachedN3AtGPs = new Dictionary<IQuadrature1D, IReadOnlyList<Matrix>>();
 		}
 
 		/// <summary>
@@ -120,6 +124,39 @@ namespace MGroup.MSolve.Numerics.Interpolation
 				cachedFunctionsAtGPs.TryAdd(quadrature, shapeFunctionsAtGPsArray);
 				return shapeFunctionsAtGPsArray;
 			}
+		}
+
+		public IReadOnlyList<Matrix> EvaluateN3ShapeFunctionsReorganized(IQuadrature1D quadrature)
+		{
+			bool isCached = cachedN3AtGPs.TryGetValue(quadrature,
+				out IReadOnlyList<Matrix> N3AtGPs);
+			if (isCached) return N3AtGPs;
+			else
+			{
+				IReadOnlyList<double[]> N1 = EvaluateFunctionsAtGaussPoints(quadrature);
+				N3AtGPs = GetN3ShapeFunctionsReorganized(quadrature, N1);
+				cachedN3AtGPs.Add(quadrature, N3AtGPs);
+				return N3AtGPs;
+			}
+		}
+
+		private IReadOnlyList<Matrix> GetN3ShapeFunctionsReorganized(IQuadrature1D quadrature, IReadOnlyList<double[]> N1)
+		{
+			//TODO reorganize cohesive shell  to use only N1 (not reorganised)
+
+			int nGaussPoints = quadrature.IntegrationPoints.Count;
+			var N3 = new Matrix[nGaussPoints]; // shapeFunctionsgpData
+			for (int npoint = 0; npoint < nGaussPoints; npoint++)
+			{
+				double ksi = quadrature.IntegrationPoints[npoint].Xi;
+				var N3gp = Matrix.CreateZero(3, 6); //8=nShapeFunctions;
+				for (int l = 0; l < 3; l++)
+				{
+					for (int m = 0; m < 2; m++) N3gp[l, l + 3 * m] = N1[npoint][m];
+				}
+				N3[npoint] = N3gp;
+			}
+			return N3;
 		}
 
 		public class EvalInterpolation1D
