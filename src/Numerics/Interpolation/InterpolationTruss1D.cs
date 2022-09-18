@@ -22,18 +22,19 @@ namespace MGroup.MSolve.Numerics.Interpolation
 		private static readonly InterpolationTruss1D uniqueInstance = new InterpolationTruss1D();
 		private readonly ConcurrentDictionary<IQuadrature1D, IReadOnlyList<Matrix>> cachedNaturalGradientsAtGPs;
 		private readonly ConcurrentDictionary<IQuadrature1D, IReadOnlyList<Vector>> cachedFunctionsAtGPs;
-		private readonly Dictionary<IQuadrature1D, IReadOnlyList<Matrix>> cachedN3AtGPs;
+		private readonly ConcurrentDictionary<IQuadrature1D, IReadOnlyList<Matrix>> cachedN3AtGPs;
 
 		private InterpolationTruss1D()
 		{
 			NodalNaturalCoordinates = new NaturalPoint[]
 			{
 				new NaturalPoint(-1.0),
-				new NaturalPoint(+1.0)
+				new NaturalPoint(+1.0),
 			};
-			this.cachedNaturalGradientsAtGPs = new Dictionary<IQuadrature1D, IReadOnlyList<Matrix>>();
-			this.cachedFunctionsAtGPs = new Dictionary<IQuadrature1D, IReadOnlyList<double[]>>();
-			this.cachedN3AtGPs = new Dictionary<IQuadrature1D, IReadOnlyList<Matrix>>();
+
+			this.cachedNaturalGradientsAtGPs = new ConcurrentDictionary<IQuadrature1D, IReadOnlyList<Matrix>>();
+			this.cachedFunctionsAtGPs = new ConcurrentDictionary<IQuadrature1D, IReadOnlyList<Vector>>();
+			this.cachedN3AtGPs = new ConcurrentDictionary<IQuadrature1D, IReadOnlyList<Matrix>>();
 		}
 
 		/// <summary>
@@ -102,6 +103,7 @@ namespace MGroup.MSolve.Numerics.Interpolation
 					GaussPoint gaussPoint = quadrature.IntegrationPoints[gp];
 					naturalGradientsAtGPsArray[gp] = EvaluateGradientsAt();
 				}
+
 				cachedNaturalGradientsAtGPs.TryAdd(quadrature, naturalGradientsAtGPsArray);
 				return naturalGradientsAtGPsArray;
 			}
@@ -109,9 +111,11 @@ namespace MGroup.MSolve.Numerics.Interpolation
 
 		public IReadOnlyList<Vector> EvaluateFunctionsAtGaussPoints(IQuadrature1D quadrature)
 		{
-			bool isCached = cachedFunctionsAtGPs.TryGetValue(quadrature,
-				out IReadOnlyList<Vector> shapeFunctionsAtGPs);
-			if (isCached) return shapeFunctionsAtGPs;
+			bool isCached = cachedFunctionsAtGPs.TryGetValue(quadrature, out IReadOnlyList<Vector> shapeFunctionsAtGPs);
+			if (isCached)
+			{
+				return shapeFunctionsAtGPs;
+			}
 			else
 			{
 				int numGPs = quadrature.IntegrationPoints.Count;
@@ -121,6 +125,7 @@ namespace MGroup.MSolve.Numerics.Interpolation
 					GaussPoint gaussPoint = quadrature.IntegrationPoints[gp];
 					shapeFunctionsAtGPsArray[gp] = Vector.CreateFromArray(EvaluateAt(gaussPoint.Xi));
 				}
+
 				cachedFunctionsAtGPs.TryAdd(quadrature, shapeFunctionsAtGPsArray);
 				return shapeFunctionsAtGPsArray;
 			}
@@ -128,19 +133,21 @@ namespace MGroup.MSolve.Numerics.Interpolation
 
 		public IReadOnlyList<Matrix> EvaluateN3ShapeFunctionsReorganized(IQuadrature1D quadrature)
 		{
-			bool isCached = cachedN3AtGPs.TryGetValue(quadrature,
-				out IReadOnlyList<Matrix> N3AtGPs);
-			if (isCached) return N3AtGPs;
+			bool isCached = cachedN3AtGPs.TryGetValue(quadrature, out IReadOnlyList<Matrix> N3AtGPs);
+			if (isCached)
+			{
+				return N3AtGPs;
+			}
 			else
 			{
-				IReadOnlyList<double[]> N1 = EvaluateFunctionsAtGaussPoints(quadrature);
+				var N1 = EvaluateFunctionsAtGaussPoints(quadrature);
 				N3AtGPs = GetN3ShapeFunctionsReorganized(quadrature, N1);
-				cachedN3AtGPs.Add(quadrature, N3AtGPs);
+				cachedN3AtGPs.TryAdd(quadrature, N3AtGPs);
 				return N3AtGPs;
 			}
 		}
 
-		private IReadOnlyList<Matrix> GetN3ShapeFunctionsReorganized(IQuadrature1D quadrature, IReadOnlyList<double[]> N1)
+		private IReadOnlyList<Matrix> GetN3ShapeFunctionsReorganized(IQuadrature1D quadrature, IReadOnlyList<Vector> N1)
 		{
 			//TODO reorganize cohesive shell  to use only N1 (not reorganised)
 
@@ -154,8 +161,10 @@ namespace MGroup.MSolve.Numerics.Interpolation
 				{
 					for (int m = 0; m < 2; m++) N3gp[l, l + 3 * m] = N1[npoint][m];
 				}
+
 				N3[npoint] = N3gp;
 			}
+
 			return N3;
 		}
 
@@ -163,6 +172,4 @@ namespace MGroup.MSolve.Numerics.Interpolation
 		{
 		}
 	}
-
-
 }
