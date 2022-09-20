@@ -24,33 +24,77 @@ namespace MGroup.MSolve.Numerics.Interpolation.Jacobians
 		/// </summary>
 		/// <param name="nodes">The nodes used for the interpolation.</param>
 		/// <param name="naturalCoordinates">The shape function derivatives at a specific integration point.</param>
-		public IsoparametricJacobian3D(IReadOnlyList<INode> nodes, Matrix naturalDerivatives)
+		/// <param name="tolerance">The value under which the jacobian determinant is considered unaccaptable.</param>
+		public IsoparametricJacobian3D(IReadOnlyList<INode> nodes, Matrix naturalDerivatives, double tolerance)
 		{
+			var nodeNorm = NodeNorm(nodes);
+
 			DirectMatrix = CalculateJacobianMatrix(nodes, naturalDerivatives);
-			(InverseMatrix, DirectDeterminant) = DirectMatrix.InvertAndDeterminant();
-			//(InverseMatrix, DirectDeterminant) = InvertAndDeterminant(DirectMatrix);
-			if (DirectDeterminant < determinantTolerance)
+			(InverseMatrix, DirectDeterminant) = DirectMatrix.InvertAndDeterminant(Double.Epsilon);
+
+			if (DirectDeterminant / (nodeNorm != 0 ? nodeNorm : 1d) < tolerance)
 			{
-				throw new ArgumentException("Jacobian determinant is negative or under the allowed tolerance"
-					+ $" ({DirectDeterminant} < {determinantTolerance}). Check the order of nodes or the element geometry.");
+				throw new ArgumentException($"Jacobian determinant {DirectDeterminant} is negative or under the allowed tolerance"
+					+ $" ({DirectDeterminant / (nodeNorm != 0 ? nodeNorm : 1d)} < {determinantTolerance}). Check the order of nodes or the element geometry.");
 			}
 		}
 
-		public IsoparametricJacobian3D(double[][] deformedStateNodeCoordinates, Matrix naturalDerivatives, bool CalculateInverseAndDetereminant)
+		/// <summary>
+		/// The caller (usually the interpolation class) assumes responsibility for matching the nodes to the shape function 
+		/// derivatives.
+		/// </summary>
+		/// <param name="nodes">The nodes used for the interpolation.</param>
+		/// <param name="naturalCoordinates">The shape function derivatives at a specific integration point.</param>
+		public IsoparametricJacobian3D(IReadOnlyList<INode> nodes, Matrix naturalDerivatives)
+			: this(nodes, naturalDerivatives, determinantTolerance)
+		{
+		}
+
+		public IsoparametricJacobian3D(double[][] deformedStateNodeCoordinates, Matrix naturalDerivatives, bool CalculateInverseAndDetereminant, double tolerance)
 		{
 			DirectMatrix = CalculateJacobianMatrix(deformedStateNodeCoordinates, naturalDerivatives);
 			if (CalculateInverseAndDetereminant)
 			{
-				(InverseMatrix, DirectDeterminant) = DirectMatrix.InvertAndDeterminant();
-				//(InverseMatrix, DirectDeterminant) = InvertAndDeterminant(DirectMatrix);
-				if (DirectDeterminant < determinantTolerance)
+				var nodeNorm = NodeNorm(deformedStateNodeCoordinates);
+				(InverseMatrix, DirectDeterminant) = DirectMatrix.InvertAndDeterminant(Double.Epsilon);
+
+				if (DirectDeterminant / (nodeNorm != 0 ? nodeNorm : 1d) < tolerance)
 				{
-					throw new ArgumentException("Jacobian determinant is negative or under the allowed tolerance"
-						+ $" ({DirectDeterminant} < {determinantTolerance}). Check the order of nodes or the element geometry.");
+					throw new ArgumentException($"Jacobian determinant {DirectDeterminant} is negative or under the allowed tolerance"
+						+ $" ({DirectDeterminant / (nodeNorm != 0 ? nodeNorm : 1d)} < {determinantTolerance}). Check the order of nodes or the element geometry.");
 				}
 			}
 		}
 
+		public IsoparametricJacobian3D(double[][] deformedStateNodeCoordinates, Matrix naturalDerivatives, bool CalculateInverseAndDetereminant)
+			: this(deformedStateNodeCoordinates, naturalDerivatives, CalculateInverseAndDetereminant, determinantTolerance)
+		{
+		}
+
+		private double NodeNorm(IReadOnlyList<INode> nodes)
+		{
+			double norm = 0;
+			for (int i = 0; i < nodes.Count; i++)
+			{
+				norm += nodes[i].X * nodes[i].X + nodes[i].Y * nodes[i].Y + nodes[i].Z * nodes[i].Z;
+			}
+
+			return Math.Sqrt(norm);
+		}
+
+		private double NodeNorm(double[][] nodes)
+		{
+			double norm = 0;
+			for (int i = 0; i < nodes.Length; i++)
+			{
+				for (int j = 0; j < nodes[i].Length; j++)
+				{
+					norm += nodes[i][j] * nodes[i][j];
+				}
+			}
+
+			return Math.Sqrt(norm);
+		}
 
 		/// <summary>
 		/// The determinant of the direct Jacobian matrix <see cref="DirectMatrix"/>.
