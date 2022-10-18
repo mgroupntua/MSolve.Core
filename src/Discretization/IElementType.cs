@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MGroup.LinearAlgebra.Matrices;
+using MGroup.MSolve.DataStructures;
 using MGroup.MSolve.Discretization.BoundaryConditions;
 using MGroup.MSolve.Discretization.Dofs;
 using MGroup.MSolve.Discretization.Entities;
@@ -24,7 +25,7 @@ namespace MGroup.MSolve.Discretization
         CellType CellType { get; }
         IElementDofEnumerator DofEnumerator { get; set; }
         IReadOnlyList<IReadOnlyList<IDofType>> GetElementDofTypes();
-        void SaveConstitutiveLawState();
+        void SaveConstitutiveLawState(IHaveState externalState);
         Tuple<double[], double[]> CalculateResponse(double[] localDisplacements);
         double[] CalculateResponseIntegral();
         double[] CalculateResponseIntegralForLogging(double[] localDisplacements);

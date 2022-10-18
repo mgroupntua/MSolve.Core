@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+
+using MGroup.MSolve.DataStructures;
 using MGroup.MSolve.Discretization;
 using MGroup.MSolve.Discretization.Entities;
 
@@ -72,9 +74,9 @@ namespace MGroup.MSolve.Discretization.Entities
 		//	foreach (IElementType element in Elements) element.ResetConstitutiveLawModified();
 		//}
 		
-		public void SaveConstitutiveLawState()
+		public void SaveConstitutiveLawState(IHaveState externalState)
 		{
-			foreach (IElementType element in Elements) element.SaveConstitutiveLawState();
+			foreach (IElementType element in Elements) element.SaveConstitutiveLawState(externalState);
 		}
 	}
 }

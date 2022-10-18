@@ -7,7 +7,7 @@ namespace MGroup.MSolve.Constitutive
 	/// <summary>
 	/// A generic state object for constitutive law state variables
 	/// </summary>
-	public class GenericConstitutiveLawState : IHaveState
+	public class GenericConstitutiveLawState : IHaveStateWithValues
 	{
 		private readonly IConstitutiveLawWithGenericState constitutiveLaw;
 		private readonly Dictionary<string, double> stateValues;

@@ -9,7 +9,7 @@ namespace MGroup.MSolve.AnalysisWorkflow
 	/// <summary>
 	/// A generic state object for constitutive law state variables
 	/// </summary>
-	public class GenericAnalyzerState : IHaveState
+	public class GenericAnalyzerState : IHaveStateWithValues
 	{
 		private readonly IAnalyzer analyzer;
 		private readonly Dictionary<string, IGlobalVector> stateVectors;
