@@ -8,6 +8,9 @@ namespace MGroup.MSolve.Numerics.Interpolation.Jacobians
 {
 	public class JacobianHexa8Reverse
 	{
+		private static double nodeNorm = 1d;
+		public static double DeterminantTolerance = Double.Epsilon;
+
 		public static (Matrix[] jacobianInverse, double[] jacobianDeterminants)
 			GetJ_0invHexaAndjacobianDeterminants(IReadOnlyList<Matrix> shapeFunctionNaturalDerivatives, IReadOnlyList<INode> elementNodes, int nGaussPoints)
 		{
@@ -16,6 +19,7 @@ namespace MGroup.MSolve.Numerics.Interpolation.Jacobians
 			Matrix[] jacobianInverse;
 			double[] jacobianDeterminants; // dimension [] number of gpoints
 
+			nodeNorm = NodeNorm(elementNodes);
 			double[][] initialCoordinates;
 			initialCoordinates = new double[8][];
 			for (int j = 0; j < 8; j++)
@@ -64,9 +68,14 @@ namespace MGroup.MSolve.Numerics.Interpolation.Jacobians
 				double det3 = jacobians[gpoint][0, 2] *
 							  ((jacobians[gpoint][1, 0] * jacobians[gpoint][2, 1]) - (jacobians[gpoint][2, 0] * jacobians[gpoint][1, 1]));
 				double jacobianDeterminant = det1 - det2 + det3;
-				if (jacobianDeterminant < 0)
+
+				//if (jacobianDeterminant < 0)
+				//{
+				//	throw new InvalidOperationException("The Jacobian Determinant is negative.");
+				//}
+				if (jacobianDeterminant / (nodeNorm != 0 ? nodeNorm : 1d) < DeterminantTolerance)
 				{
-					throw new InvalidOperationException("The Jacobian Determinant is negative.");
+					throw new InvalidOperationException($"The Jacobian Determinant is below {DeterminantTolerance}.");
 				}
 				jacobianDeterminants[gpoint] = jacobianDeterminant;
 
@@ -93,9 +102,19 @@ namespace MGroup.MSolve.Numerics.Interpolation.Jacobians
 
 
 			return (jacobianInverse, jacobianDeterminants);
-
-
 		}
+
+		private static double NodeNorm(IReadOnlyList<INode> nodes)
+		{
+			double norm = 0;
+			for (int i = 0; i < nodes.Count; i++)
+			{
+				norm += nodes[i].X * nodes[i].X + nodes[i].Y * nodes[i].Y + nodes[i].Z * nodes[i].Z;
+			}
+
+			return Math.Sqrt(norm);
+		}
+
 		public static (double[][,] jacobianInverse, double[] jacobianDeterminants)
 			GetJacobiansAndJacobianDeterminants(double[][,] shapeFunctionNaturalDerivatives, IList<INode> elementNodes, int nGaussPoints)
 		{
@@ -152,9 +171,14 @@ namespace MGroup.MSolve.Numerics.Interpolation.Jacobians
 				double det3 = jacobians[gpoint][0, 2] *
 							  ((jacobians[gpoint][1, 0] * jacobians[gpoint][2, 1]) - (jacobians[gpoint][2, 0] * jacobians[gpoint][1, 1]));
 				double jacobianDeterminant = det1 - det2 + det3;
-				if (jacobianDeterminant < 0)
+
+				//if (jacobianDeterminant < 0)
+				//{
+				//	throw new InvalidOperationException("The Jacobian Determinant is negative.");
+				//}
+				if (jacobianDeterminant / (nodeNorm != 0 ? nodeNorm : 1d) < DeterminantTolerance)
 				{
-					throw new InvalidOperationException("The Jacobian Determinant is negative.");
+					throw new InvalidOperationException($"The Jacobian Determinant is below {DeterminantTolerance}.");
 				}
 				jacobianDeterminants[gpoint] = jacobianDeterminant;
 

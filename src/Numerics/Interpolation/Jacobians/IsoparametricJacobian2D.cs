@@ -18,11 +18,11 @@ namespace MGroup.MSolve.Numerics.Interpolation.Jacobians
 	/// </summary>
 	public class IsoparametricJacobian2D
 	{
-		private const double determinantTolerance = 1E-8; // This needs to be in a static settings class.
+		public static double DeterminantTolerance = 1E-8;
 
 		/// <summary>
 		/// The caller (usually the interpolation class) assumes responsibility for matching the nodes to the shape function 
-		/// derivatives.
+		/// derivatives. The static DeterminantTolerance variable contains the default derivative tolerance under which determinant is supposed to be zero.
 		/// </summary>
 		/// <param name="nodes">The nodes used for the interpolation.</param>
 		/// <param name="naturalDerivatives">The shape function derivatives at a specific integration point.</param>
@@ -38,7 +38,7 @@ namespace MGroup.MSolve.Numerics.Interpolation.Jacobians
 			if (DirectDeterminant / (nodeNorm != 0 ? nodeNorm : 1d) < tolerance)
 			{
 				throw new ArgumentException($"Jacobian determinant {DirectDeterminant} is negative or under the allowed tolerance"
-					+ $" ({DirectDeterminant / (nodeNorm != 0 ? nodeNorm : 1d)} < {determinantTolerance}). Check the order of nodes or the element geometry.");
+					+ $" ({DirectDeterminant / (nodeNorm != 0 ? nodeNorm : 1d)} < {tolerance}). Check the order of nodes or the element geometry.");
 			}
 		}
 
@@ -49,7 +49,7 @@ namespace MGroup.MSolve.Numerics.Interpolation.Jacobians
 		/// <param name="nodes">The nodes used for the interpolation.</param>
 		/// <param name="naturalDerivatives">The shape function derivatives at a specific integration point.</param>
 		public IsoparametricJacobian2D(IReadOnlyList<INode> nodes, Matrix naturalDerivatives)
-			: this(nodes, naturalDerivatives, determinantTolerance)
+			: this(nodes, naturalDerivatives, DeterminantTolerance)
 		{
 		}
 
