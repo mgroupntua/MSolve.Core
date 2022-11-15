@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +18,18 @@ namespace MGroup.MSolve.Discretization.Dofs
         {
 		}
 
-        private DofTable(Dictionary<INode, Dictionary<IDofType, int>> data) : base(data)
+        private DofTable(ConcurrentDictionary<INode, ConcurrentDictionary<IDofType, int>> data) : base(data)
         {
 		}
 
         //TODO: this would be nice to have in Table too.
         public DofTable DeepCopy()
         {
-            var dataCopy = new Dictionary<INode, Dictionary<IDofType, int>>();
+            var dataCopy = new ConcurrentDictionary<INode, ConcurrentDictionary<IDofType, int>>();
             foreach (var wholeRow in this.data)
             {
                 // IDof and int are immutable, thus I can just copy the nested dictionary.
-                dataCopy.Add(wholeRow.Key, new Dictionary<IDofType, int>(wholeRow.Value));
+                dataCopy.TryAdd(wholeRow.Key, new ConcurrentDictionary<IDofType, int>(wholeRow.Value));
             }
             return new DofTable(dataCopy);
         }
@@ -41,11 +42,11 @@ namespace MGroup.MSolve.Discretization.Dofs
         {
             //TODO: I will probably need to control the new ordering, instead of being in the order I meet the dofs
             int dofCounter = 0;
-            var subtable = new Dictionary<INode, Dictionary<IDofType, int>>();
+            var subtable = new ConcurrentDictionary<INode, ConcurrentDictionary<IDofType, int>>();
             foreach (INode node in nodes)
             {
-                var newNodeData = new Dictionary<IDofType, int>();
-                bool hasFreeDofs = this.data.TryGetValue(node, out Dictionary<IDofType, int> oldNodeData);
+                var newNodeData = new ConcurrentDictionary<IDofType, int>();
+                bool hasFreeDofs = this.data.TryGetValue(node, out ConcurrentDictionary<IDofType, int> oldNodeData);
                 if (hasFreeDofs)
                 {
                     foreach (IDofType dofType in oldNodeData.Keys)
@@ -99,7 +100,7 @@ namespace MGroup.MSolve.Discretization.Dofs
             int dofIdx = -1;
             foreach (INode node in sortedNodes)
             {
-                bool isNodeContained = data.TryGetValue(node, out Dictionary<IDofType, int> dofsOfNode);
+                bool isNodeContained = data.TryGetValue(node, out ConcurrentDictionary<IDofType, int> dofsOfNode);
                 if (isNodeContained)
                 {
                     // We cannot not update the dictionary during iterating it, thus we copy its Key collection to a list first.

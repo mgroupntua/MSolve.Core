@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace MGroup.MSolve.DataStructures
     /// <summary>
     /// Basic table data structure, which associates ordered pairs (row, column) with values. Contrary to matrices, not 
     /// all (row, column) pairs of a table need to be associated with values.
-    /// Authors: Serafeim Bakalakos
+    /// Authors: Serafeim Bakalakos, George Stavroulakis
     /// </summary>
     /// <typeparam name="TRow"></typeparam>
     /// <typeparam name="TColumn"></typeparam>
@@ -24,20 +25,24 @@ namespace MGroup.MSolve.DataStructures
     public class Table<TRow, TColumn, TValue> : ITable<TRow, TColumn, TValue>
     {
         protected const int defaultInitialCapacity = 1; //There will be at least 1. TODO: perhaps get this from Dictionary class.
-        protected readonly int initialCapacityForEachDim;
-        protected readonly Dictionary<TRow, Dictionary<TColumn, TValue>> data;
+		protected const int defaultConcurrency = 8; //TODO: Make a better estimate.
+		protected readonly int initialCapacityForEachDim;
+		protected readonly int initialConcurrency;
+		protected readonly ConcurrentDictionary<TRow, ConcurrentDictionary<TColumn, TValue>> data;
 
-        public Table(int initialCapacityForEachDim = defaultInitialCapacity)
+        public Table(int initialCapacityForEachDim = defaultInitialCapacity, int initialConcurrency = defaultConcurrency)
         {
             this.initialCapacityForEachDim = initialCapacityForEachDim;
-            this.data = new Dictionary<TRow, Dictionary<TColumn, TValue>>(initialCapacityForEachDim);
+			this.initialConcurrency = initialConcurrency;
+            this.data = new ConcurrentDictionary<TRow, ConcurrentDictionary<TColumn, TValue>>(initialConcurrency, initialCapacityForEachDim);
         }
 
-        protected Table(Dictionary<TRow, Dictionary<TColumn, TValue>> data,
-            int initialCapacityForEachDim = defaultInitialCapacity)
+        protected Table(ConcurrentDictionary<TRow, ConcurrentDictionary<TColumn, TValue>> data,
+            int initialCapacityForEachDim = defaultInitialCapacity, int initialConcurrency = defaultConcurrency)
         {
             this.initialCapacityForEachDim = initialCapacityForEachDim;
-            this.data = data;
+			this.initialConcurrency = initialConcurrency;
+			this.data = data;
         }
 
 		public int NumEntries //TODO: perhaps this should be cached somehow
@@ -56,11 +61,11 @@ namespace MGroup.MSolve.DataStructures
 
             set
             {
-                bool containsRow = data.TryGetValue(row, out Dictionary<TColumn, TValue> wholeRow);
+                bool containsRow = data.TryGetValue(row, out ConcurrentDictionary<TColumn, TValue> wholeRow);
                 if (!containsRow)
                 {
-                    wholeRow = new Dictionary<TColumn, TValue>(initialCapacityForEachDim);
-                    data.Add(row, wholeRow);
+                    wholeRow = new ConcurrentDictionary<TColumn, TValue>(initialConcurrency, initialCapacityForEachDim);
+                    data.TryAdd(row, wholeRow);
                 }
                 wholeRow[col] = value; // This allows changing the value after an entry has been added.
                 // The code below was used to prevent changes after an entry has been added, but that makes reordering difficult.
@@ -77,7 +82,7 @@ namespace MGroup.MSolve.DataStructures
 
         public bool Contains(TRow row, TColumn col)
         {
-            bool containsRow = data.TryGetValue(row, out Dictionary<TColumn, TValue> wholeRow);
+            bool containsRow = data.TryGetValue(row, out ConcurrentDictionary<TColumn, TValue> wholeRow);
             if (!containsRow) return false;
             else return wholeRow.ContainsKey(col);
         }
@@ -116,14 +121,14 @@ namespace MGroup.MSolve.DataStructures
 
         public IEnumerable<TColumn> GetColumnsOfRow(TRow row)
         {
-            bool containsRow = data.TryGetValue(row, out Dictionary<TColumn, TValue> wholeRow);
+            bool containsRow = data.TryGetValue(row, out ConcurrentDictionary<TColumn, TValue> wholeRow);
             if (containsRow) return wholeRow.Keys;
             else return Enumerable.Empty<TColumn>();
         }
 
         public IReadOnlyDictionary<TColumn, TValue> GetDataOfRow(TRow row)
         {
-            bool exists = data.TryGetValue(row, out Dictionary<TColumn, TValue> rowData);
+            bool exists = data.TryGetValue(row, out ConcurrentDictionary<TColumn, TValue> rowData);
             if (!exists) throw new KeyNotFoundException("The provided row is not contained in this table");
             return rowData;
         }
@@ -132,7 +137,7 @@ namespace MGroup.MSolve.DataStructures
 
         public IEnumerable<TValue> GetValuesOfRow(TRow row) //TODO: perhaps I should throw an exception if the row is not found
         {
-            bool containsRow = data.TryGetValue(row, out Dictionary<TColumn, TValue> wholeRow);
+            bool containsRow = data.TryGetValue(row, out ConcurrentDictionary<TColumn, TValue> wholeRow);
             if (containsRow) return wholeRow.Values;
             else return Enumerable.Empty<TValue>();
         }
@@ -141,7 +146,7 @@ namespace MGroup.MSolve.DataStructures
         {
             //TODO: perhaps I should create a new table and replace the existing one once finished.
 
-            foreach (Dictionary<TColumn, TValue> rowData in data.Values)
+            foreach (ConcurrentDictionary<TColumn, TValue> rowData in data.Values)
             {
                 // Create a temporary collection for iterating, while modifying the actual one
                 var rowDataAsList = new List<KeyValuePair<TColumn, TValue>>(rowData);
@@ -177,14 +182,14 @@ namespace MGroup.MSolve.DataStructures
         /// <param name="value"></param>
         public bool TryAdd(TRow row, TColumn col, TValue value)
         {
-            bool containsRow = data.TryGetValue(row, out Dictionary<TColumn, TValue> wholeRow);
+            bool containsRow = data.TryGetValue(row, out ConcurrentDictionary<TColumn, TValue> wholeRow);
             if (containsRow)
             {
                 //TODO: the following try clause can be replaced by the more efficient "return wholeRow.TryAdd(col, value)", once
                 // it is available in .NET Standard. Unfortunately I cannot reference a .Net Core 2.1 project from .Net Standard
                 try
                 {
-                    wholeRow.Add(col, value);
+                    wholeRow.TryAdd(col, value);
                     return true;
                 }
                 catch (ArgumentException)
@@ -194,23 +199,23 @@ namespace MGroup.MSolve.DataStructures
             }
             else
             {
-                wholeRow = new Dictionary<TColumn, TValue>(initialCapacityForEachDim);
-                data.Add(row, wholeRow);
-                wholeRow.Add(col, value);
+                wholeRow = new ConcurrentDictionary<TColumn, TValue>(initialConcurrency, initialCapacityForEachDim);
+                data.TryAdd(row, wholeRow);
+                wholeRow.TryAdd(col, value);
                 return true;
             }
         }
 
         public bool TryGetDataOfRow(TRow row, out IReadOnlyDictionary<TColumn, TValue> columnValuePairs)
         {
-            bool exists = data.TryGetValue(row, out Dictionary<TColumn, TValue> rowData);
+            bool exists = data.TryGetValue(row, out ConcurrentDictionary<TColumn, TValue> rowData);
             columnValuePairs = rowData;
             return exists;
         }
 
         public bool TryGetValue(TRow row, TColumn col, out TValue value)
         {
-            bool containsRow = data.TryGetValue(row, out Dictionary<TColumn, TValue> wholeRow);
+            bool containsRow = data.TryGetValue(row, out ConcurrentDictionary<TColumn, TValue> wholeRow);
             if (!containsRow)
             {
                 value = default(TValue);
