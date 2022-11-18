@@ -1,6 +1,6 @@
 using MGroup.MSolve.Discretization.Dofs;
 
-namespace MGroup.MSolve.Core.AnalysisWorkflow.Transient
+namespace MGroup.MSolve.AnalysisWorkflow.Transient
 {
 	public interface IDomainInitialCondition<out T> where T : IDofType
 	{

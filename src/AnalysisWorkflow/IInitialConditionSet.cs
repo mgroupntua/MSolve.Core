@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MGroup.MSolve.Discretization.Dofs;
 using MGroup.MSolve.Discretization.Entities;
 
-namespace MGroup.MSolve.Core.AnalysisWorkflow.Transient
+namespace MGroup.MSolve.AnalysisWorkflow.Transient
 {
 	public interface IInitialConditionSet : IInitialConditionSet<IDofType>
 	{

@@ -1,16 +1,8 @@
 using MGroup.MSolve.Discretization.Dofs;
 using MGroup.MSolve.Discretization.Entities;
 
-namespace MGroup.MSolve.Core.AnalysisWorkflow.Transient
+namespace MGroup.MSolve.AnalysisWorkflow.Transient
 {
-	public enum DifferentiationOrder
-	{
-		Zero = 0,
-		First,
-		Second,
-		Third,
-	}
-
 	public interface INodalInitialCondition : INodalInitialCondition<IDofType>
 	{
 

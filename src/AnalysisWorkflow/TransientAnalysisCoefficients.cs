@@ -1,9 +1,19 @@
-namespace MGroup.MSolve.AnalysisWorkflow
+using System;
+using System.Linq;
+
+namespace MGroup.MSolve.AnalysisWorkflow.Transient
 {
+	public enum DifferentiationOrder
+	{
+		Zero = 0,
+		First,
+		Second,
+		Third,
+	}
+
 	public class TransientAnalysisCoefficients
 	{
-		public double SecondOrderDerivativeCoefficient { get; set; } = double.NaN;
-		public double FirstOrderDerivativeCoefficient { get; set; } = double.NaN;
-		public double ZeroOrderDerivativeCoefficient { get; set; } = double.NaN;
+		private double[] coefficients = Enumerable.Repeat(Double.NaN, Enum.GetNames(typeof(DifferentiationOrder)).Length).ToArray();
+		public double this[DifferentiationOrder o] { get => coefficients[(int)o]; }
 	}
 }
