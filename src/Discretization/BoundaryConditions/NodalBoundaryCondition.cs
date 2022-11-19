@@ -19,5 +19,6 @@ namespace MGroup.MSolve.Discretization.BoundaryConditions
 		}
 
 		public INodalBoundaryCondition<IDofType> WithAmount(double amount) => new NodalBoundaryCondition(Node, DOF, amount);
+		INodalModelQuantity<IDofType> INodalModelQuantity<IDofType>.WithAmount(double amount) => new NodalBoundaryCondition(Node, DOF, amount);
 	}
 }
