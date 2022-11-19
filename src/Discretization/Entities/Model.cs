@@ -6,6 +6,7 @@ using MGroup.MSolve.Discretization.Entities;
 using MGroup.MSolve.Discretization.Embedding;
 using MGroup.MSolve.Discretization.BoundaryConditions;
 using MGroup.MSolve.Discretization.Dofs;
+using MGroup.MSolve.AnalysisWorkflow.Transient;
 
 //TODO: find what is going on with the dynamic loads and refactor them. That 564000000 in AssignMassAccelerationHistoryLoads()
 //      cannot be correct.
@@ -20,13 +21,10 @@ namespace MGroup.MSolve.Discretization.Entities
 	public class Model : IModel
 	{
 		public Dictionary<int, INode> NodesDictionary { get; } = new Dictionary<int, INode>();
-
 		public Dictionary<int, IElementType> ElementsDictionary { get; } = new Dictionary<int, IElementType>();
-
 		public IList<IBoundaryConditionSet<IDofType>> BoundaryConditions { get; } = new List<IBoundaryConditionSet<IDofType>>();
-
+		public IList<IInitialConditionSet<IDofType>> InitialConditions { get; } = new List<IInitialConditionSet<IDofType>>();
 		public int NumSubdomains => SubdomainsDictionary.Count;
-
 		public Dictionary<int, Subdomain> SubdomainsDictionary { get; } = new Dictionary<int, Subdomain>();
 
 		// Warning: This is called by the analyzer, so that the user does not have to call it explicitly. However, it is must be 
@@ -42,6 +40,8 @@ namespace MGroup.MSolve.Discretization.Entities
 
 		public IEnumerable<IBoundaryConditionSet<IDofType>> EnumerateBoundaryConditions(int subdomainID) => 
 			BoundaryConditions.Select(x => x.CreateBoundaryConditionSetOfSubdomain(SubdomainsDictionary[subdomainID]));
+		public IEnumerable<IInitialConditionSet<IDofType>> EnumerateInitialConditions(int subdomainID) =>
+			InitialConditions.Select(x => x.CreateInitialConditionSetOfSubdomain(SubdomainsDictionary[subdomainID]));
 
 		public IEnumerable<IElementType> EnumerateElements(int subdomainID) => SubdomainsDictionary[subdomainID].Elements;
 
