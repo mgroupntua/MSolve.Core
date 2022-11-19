@@ -13,7 +13,7 @@ namespace MGroup.MSolve.AnalysisWorkflow.Transient
 
 	public class TransientAnalysisCoefficients
 	{
-		private double[] coefficients = Enumerable.Repeat(Double.NaN, Enum.GetNames(typeof(DifferentiationOrder)).Length).ToArray();
-		public double this[DifferentiationOrder o] { get => coefficients[(int)o]; }
+		private double[] coefficients = Enumerable.Repeat(0d, Enum.GetNames(typeof(DifferentiationOrder)).Length).ToArray();
+		public double this[DifferentiationOrder o] { get => coefficients[(int)o]; set => coefficients[(int)o] = value; }
 	}
 }
