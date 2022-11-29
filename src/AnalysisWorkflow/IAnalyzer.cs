@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 using MGroup.MSolve.AnalysisWorkflow.Logging;
 using MGroup.MSolve.DataStructures;
 using MGroup.MSolve.Solution.LinearSystem;
@@ -10,7 +8,6 @@ namespace MGroup.MSolve.AnalysisWorkflow
 	{
 		IAnalysisWorkflowLog[] Logs { get; }
 		IGlobalVector CurrentAnalysisResult { get; }
-		void BuildMatrices(); //This makes sense for parent analyzers only.
 		void Initialize(bool isFirstAnalysis);
 		void Solve();
 
