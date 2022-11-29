@@ -13,6 +13,8 @@ namespace MGroup.MSolve.Solution.AlgebraicModel
     /// </summary>
     public interface IGlobalMatrixAssembler
     {
+		IGlobalMatrix CreateEmptyMatrix();
+
 		/// <summary>
 		/// Builds the linear system matrix that corresponds to the free (unconstrained) freedom degrees.
 		/// </summary>
