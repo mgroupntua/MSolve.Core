@@ -1,5 +1,5 @@
-﻿using MGroup.LinearAlgebra.Matrices;
-using MGroup.MSolve.Discretization;
+using MGroup.MSolve.AnalysisWorkflow.Transient;
+using MGroup.MSolve.Solution.LinearSystem;
 
 namespace MGroup.MSolve.AnalysisWorkflow.Providers
 {
@@ -10,6 +10,7 @@ namespace MGroup.MSolve.AnalysisWorkflow.Providers
 		/// to all dofs, f denotes free dofs and c denotes constrained dofs then A = [ Aff Acf^T; Acf Acc ]. This method
 		/// builds and creates only Aff.
 		/// </summary>
-		void CalculateMatrix();
+		IGlobalMatrix GetMatrix();
+		IGlobalVector GetRhs();
 	}
 }
