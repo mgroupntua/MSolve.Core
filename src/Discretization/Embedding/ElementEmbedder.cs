@@ -164,7 +164,9 @@ namespace MGroup.MSolve.Discretization.Embedding
 			if (e == null) return matrix;
 			if (e.EmbeddedNodes.Count == 0) return matrix;
 
-			return transformationMatrix.ThisTransposeTimesOtherTimesThis(matrix);
+			var t = transformationMatrix.ThisTransposeTimesOtherTimesThis(matrix);
+			t.MatrixSymmetry = matrix.MatrixSymmetry;
+			return t;
 		}
 
 		public double[] GetTransformedDisplacementsVector(double[] vector)
