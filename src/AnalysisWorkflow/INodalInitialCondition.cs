@@ -1,6 +1,5 @@
 using MGroup.MSolve.Discretization;
 using MGroup.MSolve.Discretization.Dofs;
-using MGroup.MSolve.Discretization.Entities;
 
 namespace MGroup.MSolve.AnalysisWorkflow.Transient
 {
