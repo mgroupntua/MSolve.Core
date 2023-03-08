@@ -15,6 +15,6 @@ namespace MGroup.MSolve.Discretization
 		double Multiplier { get; }
 
 		IElementModelQuantity<T> WithMultiplier(double multiplier);
-		double[] Amount(double[] coordinates);
+		double Amount(double[] coordinates);
 	}
 }

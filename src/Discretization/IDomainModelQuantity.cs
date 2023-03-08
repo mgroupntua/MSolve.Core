@@ -8,6 +8,6 @@ namespace MGroup.MSolve.Discretization
 		double Multiplier { get; }
 
 		IDomainModelQuantity<T> WithMultiplier(double multiplier);
-		double[] Amount(double[] coordinates);
+		double Amount(double[] coordinates);
 	}
 }
