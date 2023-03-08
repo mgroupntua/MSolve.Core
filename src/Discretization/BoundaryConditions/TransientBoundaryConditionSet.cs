@@ -20,7 +20,7 @@ namespace MGroup.MSolve.Discretization.BoundaryConditions
 		public double CurrentTime { get; set; } = 0;
 
 		public IEnumerable<IDomainBoundaryCondition<T>> EnumerateDomainBoundaryConditions()
-			=> boundaryConditionSets.SelectMany(x => x.EnumerateDomainBoundaryConditions().Select(bc => bc.WithAmount(timeFunc(CurrentTime, bc.Amount))));
+			=> boundaryConditionSets.SelectMany(x => x.EnumerateDomainBoundaryConditions().Select(bc => bc.WithMultiplier(timeFunc(CurrentTime, bc.Multiplier))));
 
 		public IEnumerable<INodalBoundaryCondition<T>> EnumerateNodalBoundaryConditions()
 			=> boundaryConditionSets.SelectMany(x => x.EnumerateNodalBoundaryConditions().Select(bc => bc.WithAmount(timeFunc(CurrentTime, bc.Amount))));
