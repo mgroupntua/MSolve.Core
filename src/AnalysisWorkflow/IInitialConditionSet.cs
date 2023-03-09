@@ -16,7 +16,7 @@ namespace MGroup.MSolve.AnalysisWorkflow.Transient
 		/// </summary>
 		/// <returns>IEnumerable<INodalBoundaryCondition></returns>
 		IEnumerable<INodalInitialCondition<T>> EnumerateNodalInitialConditions();
-		IEnumerable<IDomainInitialCondition<T>> EnumerateDomainInitialConditions();
+		//IEnumerable<IDomainInitialCondition<T>> EnumerateDomainInitialConditions();
 		IInitialConditionSet<T> CreateInitialConditionSetOfSubdomain(ISubdomain subdomain);
 	}
 }

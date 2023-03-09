@@ -12,6 +12,6 @@ namespace MGroup.MSolve.Solution.AlgebraicModel
 		IGlobalVector CreateZeroVector();
 		void AddToGlobalVector(IGlobalVector vector, IElementVectorProvider vectorProvider);
 		void AddToGlobalVector(Func<int, IEnumerable<INodalModelQuantity<IDofType>>> accessLoads, IGlobalVector vector);
-		void AddToGlobalVector(IEnumerable<IDomainModelQuantity<IDofType>> loads, IGlobalVector vector);
+		// void AddToGlobalVector(IEnumerable<IDomainModelQuantity<IDofType>> loads, IGlobalVector vector);
 	}
 }

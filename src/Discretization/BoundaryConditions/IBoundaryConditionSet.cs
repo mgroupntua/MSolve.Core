@@ -17,7 +17,7 @@ namespace MGroup.MSolve.Discretization.BoundaryConditions
 		/// </summary>
 		/// <returns>IEnumerable<INodalBoundaryCondition></returns>
 		IEnumerable<INodalBoundaryCondition<T>> EnumerateNodalBoundaryConditions();
-		IEnumerable<IDomainBoundaryCondition<T>> EnumerateDomainBoundaryConditions();
+		//IEnumerable<IDomainBoundaryCondition<T>> EnumerateDomainBoundaryConditions();
 		IEnumerable<INodalNeumannBoundaryCondition<T>> EnumerateEquivalentNodalNeumannBoundaryConditions(IEnumerable<IElementType> elements);
 		IBoundaryConditionSet<T> CreateBoundaryConditionSetOfSubdomain(ISubdomain subdomain);
 	}
