@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+using MGroup.MSolve.Discretization;
 using MGroup.MSolve.Discretization.Dofs;
 using MGroup.MSolve.Discretization.Entities;
 
@@ -15,7 +16,7 @@ namespace MGroup.MSolve.AnalysisWorkflow.Transient
 		/// Get equivalent nodal initial conditions.
 		/// </summary>
 		/// <returns>IEnumerable<INodalBoundaryCondition></returns>
-		IEnumerable<INodalInitialCondition<T>> EnumerateNodalInitialConditions();
+		IEnumerable<INodalInitialCondition<T>> EnumerateNodalInitialConditions(IEnumerable<IElementType> elements);
 		//IEnumerable<IDomainInitialCondition<T>> EnumerateDomainInitialConditions();
 		IInitialConditionSet<T> CreateInitialConditionSetOfSubdomain(ISubdomain subdomain);
 	}

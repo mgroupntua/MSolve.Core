@@ -22,8 +22,8 @@ namespace MGroup.MSolve.Discretization.BoundaryConditions
 		//public IEnumerable<IDomainBoundaryCondition<T>> EnumerateDomainBoundaryConditions()
 		//	=> boundaryConditionSets.SelectMany(x => x.EnumerateDomainBoundaryConditions().Select(bc => bc.WithMultiplier(timeFunc(CurrentTime, bc.Multiplier))));
 
-		public IEnumerable<INodalBoundaryCondition<T>> EnumerateNodalBoundaryConditions()
-			=> boundaryConditionSets.SelectMany(x => x.EnumerateNodalBoundaryConditions().Select(bc => bc.WithAmount(timeFunc(CurrentTime, bc.Amount))));
+		public IEnumerable<INodalBoundaryCondition<T>> EnumerateNodalBoundaryConditions(IEnumerable<IElementType> elements)
+			=> boundaryConditionSets.SelectMany(x => x.EnumerateNodalBoundaryConditions(elements).Select(bc => bc.WithAmount(timeFunc(CurrentTime, bc.Amount))));
 
 		public abstract IEnumerable<INodalNeumannBoundaryCondition<T>> EnumerateEquivalentNodalNeumannBoundaryConditions(IEnumerable<IElementType> elements);
 
