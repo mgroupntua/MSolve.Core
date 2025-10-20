@@ -1,7 +1,8 @@
 namespace MGroup.MSolve.Solution.AlgebraicModel
 {
 	using System.Collections.Generic;
-	using MGroup.MSolve.Solution.LinearSystem;
+
+	using MGroup.LinearAlgebra.Vectors;
 	using MGroup.MSolve.Discretization;
 	using MGroup.MSolve.Discretization.Dofs;
 	using MGroup.MSolve.Discretization.Entities;
@@ -15,9 +16,9 @@ namespace MGroup.MSolve.Solution.AlgebraicModel
 		/// <param name="vector"></param>
 		/// <param name="element"></param>
 		/// <returns></returns>
-		double[] ExtractElementVector(IGlobalVector vector, IElementType element);
+		double[] ExtractElementVector(IVector vector, IElementType element);
 
-		double[] ExtractNodalValues(IGlobalVector vector, INode node, IDofType[] dofs);
+		double[] ExtractNodalValues(IVector vector, INode node, IDofType[] dofs);
 
 		/// <summary>
 		/// If the requested (<paramref name="node"/>, <paramref name="dof"/>) pair is not a free dof or otherwise not included 
@@ -27,6 +28,6 @@ namespace MGroup.MSolve.Solution.AlgebraicModel
 		/// <param name="node"></param>
 		/// <param name="dof"></param>
 		/// <returns></returns>
-		double ExtractSingleValue(IGlobalVector vector, INode node, IDofType dof); //TODO: Also support batch requests
+		double ExtractSingleValue(IVector vector, INode node, IDofType dof); //TODO: Also support batch requests
 	}
 }

@@ -2,6 +2,9 @@ namespace MGroup.MSolve.Solution.LinearSystem
 {
 	using System.Collections.Generic;
 
+	using MGroup.LinearAlgebra.Matrices;
+	using MGroup.LinearAlgebra.Vectors;
+
 	/// <summary>
 	/// A system of linear equations. It consists of a square matrix, a right hand side vector and a solution (or left 
 	/// hand side) vector. In general objects implementing IAnalyzer determine the matrix and right hand side vector,  
@@ -11,10 +14,10 @@ namespace MGroup.MSolve.Solution.LinearSystem
 	{
 		HashSet<ILinearSystemObserver> Observers { get; }
 
-		IGlobalMatrix Matrix { get; set; }
+		IMatrix Matrix { get; set; }
 
-		IGlobalVector RhsVector { get; set; }
+		IVector RhsVector { get; set; }
 
-		IGlobalVector Solution { get; }
+		IVector Solution { get; }
 	}
 }

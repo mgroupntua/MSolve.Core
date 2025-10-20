@@ -3,9 +3,9 @@ namespace MGroup.MSolve.Solution.AlgebraicModel
 	using System;
 	using System.Collections.Generic;
 
-	using MGroup.MSolve.Solution.LinearSystem;
 	using MGroup.MSolve.Discretization;
 	using MGroup.MSolve.Discretization.Providers;
+	using MGroup.LinearAlgebra.Matrices;
 
 	/// <summary>
 	/// Builds the matrix of the linear system that will be solved.
@@ -13,7 +13,7 @@ namespace MGroup.MSolve.Solution.AlgebraicModel
 	/// </summary>
 	public interface IGlobalMatrixAssembler
 	{
-		IGlobalMatrix CreateEmptyMatrix();
+		IMatrix CreateEmptyMatrix();
 
 		/// <summary>
 		/// Builds the linear system matrix that corresponds to the free (unconstrained) freedom degrees.
@@ -21,7 +21,7 @@ namespace MGroup.MSolve.Solution.AlgebraicModel
 		/// <param name="elementMatrixProvider">
 		/// Determines the matrix calculated for each element (e.g. stiffness, mass, etc.)
 		/// </param>
-		IGlobalMatrix BuildGlobalMatrix(IElementMatrixProvider elementMatrixProvider);
+		IMatrix BuildGlobalMatrix(IElementMatrixProvider elementMatrixProvider);
 
 		/// <summary>
 		/// Rebuilds the minimum necessary portions of the linear system matrix, depending on if 
@@ -38,7 +38,7 @@ namespace MGroup.MSolve.Solution.AlgebraicModel
 		/// <param name="accessElements"></param>
 		/// <param name="elementMatrixProvider"></param>
 		/// <param name="predicate"></param>
-		void RebuildGlobalMatrixPartially(IGlobalMatrix currentMatrix, Func<int, IEnumerable<IElementType>> accessElements,
+		void RebuildGlobalMatrixPartially(IMatrix currentMatrix, Func<int, IEnumerable<IElementType>> accessElements,
 			IElementMatrixProvider elementMatrixProvider, IElementMatrixPredicate predicate);
 
 		/// <summary>
@@ -50,7 +50,7 @@ namespace MGroup.MSolve.Solution.AlgebraicModel
 		/// </param>
 		/// <param name="accessElements"></param>
 		/// <param name="elementMatrixProvider"></param>
-		IGlobalMatrix RebuildGlobalMatrixPartially(IGlobalMatrix previousMatrix,
+		IMatrix RebuildGlobalMatrixPartially(IMatrix previousMatrix,
 			Func<int, IEnumerable<IElementType>> accessElements, IElementMatrixProvider elementMatrixProvider);
 	}
 }

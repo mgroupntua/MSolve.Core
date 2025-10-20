@@ -2,10 +2,10 @@ namespace MGroup.MSolve.AnalysisWorkflow.Logging
 {
 	using System;
 
-	using MGroup.MSolve.Solution.LinearSystem;
+	using MGroup.LinearAlgebra.Vectors;
 
 	public interface IAnalysisWorkflowLog
 	{
-		void StoreResults(DateTime startTime, DateTime endTime, IGlobalVector solution);
+		void StoreResults(DateTime startTime, DateTime endTime, IVector solution);
 	}
 }

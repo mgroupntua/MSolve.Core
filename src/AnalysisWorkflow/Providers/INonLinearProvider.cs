@@ -1,13 +1,13 @@
 namespace MGroup.MSolve.AnalysisWorkflow.Providers
 {
+	using MGroup.LinearAlgebra.Vectors;
 	using MGroup.MSolve.DataStructures;
-	using MGroup.MSolve.Solution.LinearSystem;
 
 	public interface INonLinearProvider : IAnalyzerProvider
 	{
-		IGlobalVector CalculateResponseIntegralVector(IGlobalVector solution);
-		double CalculateRhsNorm(IGlobalVector rhs);
-		void ProcessInternalRhs(IGlobalVector solution, IGlobalVector rhs);
+		IVector CalculateResponseIntegralVector(IVector solution);
+		double CalculateRhsNorm(IVector rhs);
+		void ProcessInternalRhs(IVector solution, IVector rhs);
 		void UpdateState(IHaveState externalState);
 	}
 }
