@@ -1,7 +1,8 @@
-﻿namespace MGroup.MSolve.Geometry
+namespace MGroup.MSolve.Geometry
 {
 	using System;
 
+	using MGroup.LinearAlgebra.Extensions;
 	using MGroup.LinearAlgebra.Matrices;
 
 	public class RotationMatrix
