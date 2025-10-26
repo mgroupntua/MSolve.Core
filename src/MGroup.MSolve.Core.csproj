@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -11,15 +11,23 @@
     <PackageIconUrl>https://github.com/mgroupntua/MSolve.Core/raw/develop/MSolveCore.png</PackageIconUrl>
   </PropertyGroup>
 
+  <!-- Import the global props file for development on local machines-->
+  <Import Project="..\..\Directory.Build.props" Condition="Exists('..\..\Directory.Build.props')" />
+  
+  <PropertyGroup>
+    <UseLocalLinearAlgebra Condition="'$(UseLocalLinearAlgebra)' == ''">false</UseLocalLinearAlgebra>
+  </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="Triangle" Version="0.0.6-Beta3" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="MGroup.LinearAlgebra">
-      <HintPath>..\..\LinearAlgebra\src\MGroup.LinearAlgebra\bin\Debug\MGroup.LinearAlgebra.dll</HintPath>
-    </Reference>
+  <ItemGroup Condition="'$(UseLocalLinearAlgebra)' != 'true'">
+    <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.226" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(UseLocalLinearAlgebra)' == 'true'">
+    <ProjectReference Include="..\..\LinearAlgebra\src\MGroup.LinearAlgebra\MGroup.LinearAlgebra.csproj" />
   </ItemGroup>
   
 </Project>
