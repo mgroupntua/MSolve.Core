@@ -18,6 +18,6 @@ namespace MGroup.MSolve.Solution.LinearSystem
 
 		IVector RhsVector { get; set; }
 
-		IVector Solution { get; }
+		IVector Solution { get; set; }
 	}
 }

@@ -13,9 +13,8 @@
 
   <!-- Import the global props file for development on local machines-->
   <Import Project="..\..\Directory.Build.props" Condition="Exists('..\..\Directory.Build.props')" />
-  
   <PropertyGroup>
-    <UseLocalLinearAlgebra Condition="'$(UseLocalLinearAlgebra)' == ''">false</UseLocalLinearAlgebra>
+    <UseLocalLinearAlgebra Condition="'$(UseLocalMSolveProjects)' == ''">false</UseLocalLinearAlgebra>
   </PropertyGroup>
   
   <ItemGroup>
@@ -23,10 +22,10 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(UseLocalLinearAlgebra)' != 'true'">
+  <ItemGroup Condition="'$(UseLocalMSolveProjects)' == 'false'">
     <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.226" />
   </ItemGroup>
-  <ItemGroup Condition="'$(UseLocalLinearAlgebra)' == 'true'">
+  <ItemGroup Condition="'$(UseLocalMSolveProjects)' == 'true'">
     <ProjectReference Include="..\..\LinearAlgebra\src\MGroup.LinearAlgebra\MGroup.LinearAlgebra.csproj" />
   </ItemGroup>
   
