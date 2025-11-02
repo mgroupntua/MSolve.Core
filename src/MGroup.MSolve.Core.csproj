@@ -14,7 +14,7 @@
   <!-- Import the global props file for development on local machines-->
   <Import Project="..\..\Directory.Build.props" Condition="Exists('..\..\Directory.Build.props')" />
   <PropertyGroup>
-    <UseLocalLinearAlgebra Condition="'$(UseLocalMSolveProjects)' == ''">false</UseLocalLinearAlgebra>
+    <UseLocalMSolveProjects Condition="'$(UseLocalMSolveProjects)' == ''">false</UseLocalMSolveProjects>
   </PropertyGroup>
   
   <ItemGroup>
