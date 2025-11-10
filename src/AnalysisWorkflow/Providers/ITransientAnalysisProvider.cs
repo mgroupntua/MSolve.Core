@@ -2,15 +2,16 @@
 //      the analyzers (or the vectors/matrices would be passed in and overwritten).
 namespace MGroup.MSolve.AnalysisWorkflow.Providers
 {
+	using MGroup.LinearAlgebra.Matrices;
+	using MGroup.LinearAlgebra.Vectors;
 	using MGroup.MSolve.AnalysisWorkflow.Transient;
-	using MGroup.MSolve.Solution.LinearSystem;
 
 	public interface ITransientAnalysisProvider : IAnalyzerProvider
 	{
 		DifferentiationOrder ProblemOrder { get; }
 		void SetTransientAnalysisPhase(TransientAnalysisPhase phase);
-		IGlobalMatrix GetMatrix(DifferentiationOrder differentiationOrder);
-		IGlobalVector GetRhs(double time);
-		IGlobalVector GetVectorFromModelConditions(DifferentiationOrder differentiationOrder, double time);
+		IMatrix GetMatrix(DifferentiationOrder differentiationOrder);
+		IVector GetRhs(double time);
+		IVector GetVectorFromModelConditions(DifferentiationOrder differentiationOrder, double time);
 	}
 }

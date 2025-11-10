@@ -1,9 +1,9 @@
 namespace MGroup.MSolve.AnalysisWorkflow
 {
-	using MGroup.MSolve.Solution.LinearSystem;
+	using MGroup.LinearAlgebra.Vectors;
 
 	public interface INonLinearParentAnalyzer : IParentAnalyzer
 	{
-		IGlobalVector GetOtherRhsComponents(IGlobalVector currentSolution);
+		IVector GetOtherRhsComponents(IVector currentSolution);
 	}
 }

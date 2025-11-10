@@ -1,13 +1,13 @@
 namespace MGroup.MSolve.AnalysisWorkflow
 {
 	using MGroup.LinearAlgebra.Iterative;
-	using MGroup.MSolve.Solution.LinearSystem;
+	using MGroup.LinearAlgebra.Vectors;
 
 	public interface IChildAnalyzer : IAnalyzer
 	{
 		IterativeStatistics AnalysisStatistics { get; }
 		IParentAnalyzer ParentAnalyzer { get; set; }
 
-		public IGlobalVector CurrentAnalysisLinearSystemRhs { get; }
+		public IVector CurrentAnalysisLinearSystemRhs { get; }
 	}
 }

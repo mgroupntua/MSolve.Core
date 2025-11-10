@@ -3,6 +3,7 @@ namespace MGroup.MSolve.Geometry
 	using System;
 	using System.Diagnostics;
 
+	using MGroup.LinearAlgebra.Extensions;
 	using MGroup.LinearAlgebra.Matrices;
 
 	/**
