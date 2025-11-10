@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(UseLocalMSolveProjects)' == 'false'">
-    <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.226" />
+    <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.264" />
   </ItemGroup>
   <ItemGroup Condition="'$(UseLocalMSolveProjects)' == 'true'">
     <ProjectReference Include="..\..\LinearAlgebra\src\MGroup.LinearAlgebra\MGroup.LinearAlgebra.csproj" />
