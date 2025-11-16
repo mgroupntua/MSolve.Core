@@ -10,7 +10,8 @@ namespace MGroup.MSolve.Constitutive
 	/// </summary>
 	public interface IConstitutiveLaw : ICreateState, ICloneable
 	{
-		IMatrixView ConstitutiveMatrix { get; }
+		IReadOnlyMatrix ConstitutiveMatrix { get; }
+
 		double[] UpdateConstitutiveMatrixAndEvaluateResponse(double[] stimuli);
 	}
 }
