@@ -18,12 +18,11 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Triangle" Version="0.0.6-Beta3" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(UseLocalMSolveProjects)' == 'false'">
-    <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.273" />
+    <PackageReference Include="MGroup.LinearAlgebra" Version="0.1.0-unstable.291" />
   </ItemGroup>
   <ItemGroup Condition="'$(UseLocalMSolveProjects)' == 'true'">
     <ProjectReference Include="..\..\LinearAlgebra\src\MGroup.LinearAlgebra\MGroup.LinearAlgebra.csproj" />

@@ -1,11 +1,9 @@
-﻿namespace MGroup.MSolve.Geometry.Triangulation
+namespace MGroup.MSolve.Geometry.Triangulation
 {
 	using System;
 	using System.Collections.Generic;
-	using TriangleNet;
-	using TriangleNet.Geometry;
-	using TriangleNet.Meshing;
-	using TriangleNet.Meshing.Algorithm;
+
+	using MGroup.MSolve.Core.Geometry.Delaunay;
 	using MGroup.MSolve.Geometry.Coordinates;
 
 	// TODO: All triangulators should be for cartesian system. They were previously for the Natural because I was 
@@ -14,16 +12,16 @@
 	{
 		private readonly CreateVertex2D<TVertex> createVertex;
 		private readonly Configuration config;
-		private readonly TriangleNet.Meshing.ITriangulator mesher;
+		private readonly ITriangulator mesher;
 
 		public Triangulator2D(CreateVertex2D<TVertex> createVertex) : this(new Dwyer(), createVertex) { }
 
 		/// <summary>
-		/// 
+		/// Constructor.
 		/// </summary>
-		/// <param name="mesher">The Triangle.NET algorithm: eg. Dwyer, Incremental</param>
+		/// <param name="mesher">A Delauny triangulation algorithm: eg. Dwyer, Incremental</param>
 		/// <param name="createVertex"></param>
-		public Triangulator2D(TriangleNet.Meshing.ITriangulator mesher, CreateVertex2D<TVertex> createVertex)
+		public Triangulator2D(ITriangulator mesher, CreateVertex2D<TVertex> createVertex)
 		{
 			this.createVertex = createVertex;
 			this.config = new Configuration();
@@ -36,8 +34,11 @@
 			foreach (TVertex point in points) vertices.Add(new Vertex(point.X1, point.X2));
 
 			var triangles = new List<Triangle2D<TVertex>>();
-			IMesh mesh = mesher.Triangulate(vertices, config);
-			foreach (ITriangle triangle in mesh.Triangles) triangles.Add(new Triangle2D<TVertex>(triangle, createVertex));
+			Mesh mesh = mesher.Triangulate(vertices, config);
+			foreach (Triangle triangle in mesh.Triangles)
+			{
+				triangles.Add(new Triangle2D<TVertex>(triangle, createVertex));
+			}
 			return triangles;
 		}
 

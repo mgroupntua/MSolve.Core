@@ -1,8 +1,9 @@
-﻿namespace MGroup.MSolve.Geometry.Triangulation
+namespace MGroup.MSolve.Geometry.Triangulation
 {
 	using System.Collections.Generic;
 	using System.Text;
 
+	using MGroup.MSolve.Core.Geometry.Delaunay;
 	using MGroup.MSolve.Geometry.Coordinates;
 
 	/// <summary>
@@ -20,10 +21,13 @@
 	{
 		public IReadOnlyList<TVertex> Vertices { get; }
 
-		public Triangle2D(TriangleNet.Geometry.ITriangle triangle, CreateVertex2D<TVertex> createVertex)
+		public Triangle2D(Triangle triangle, CreateVertex2D<TVertex> createVertex)
 		{
 			var vertices = new TVertex[3];
-			for (int i = 0; i < 3; ++i) vertices[i] = createVertex(triangle.GetVertex(i).X, triangle.GetVertex(i).Y);
+			for (int i = 0; i < 3; ++i)
+			{
+				vertices[i] = createVertex(triangle.vertices[i].x, triangle.vertices[i].y);
+			}
 			this.Vertices = vertices;
 		}
 

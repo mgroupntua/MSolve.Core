@@ -1,12 +1,10 @@
-namespace MGroup.MSolve.Core.Geometry.Triangulation
+namespace MGroup.MSolve.Core.Geometry.Delaunay
 {
 	using System;
 	using System.Collections.Generic;
 	using System.Text;
 
-	using MGroup.MSolve.Core.Geometry.Coordinates;
-
-	public class Dwyer
+	internal class Dwyer : ITriangulator
 	{
 		private Random rand = new Random(DateTime.Now.Millisecond);
 
@@ -25,25 +23,25 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 			predicates = config.Predicates();
 			mesh = new Mesh(config);
 			mesh.TransferNodes(points);
-			Otri farleft = default(Otri);
-			Otri farright = default(Otri);
-			int count = points.Count;
+			var farleft = default(Otri);
+			var farright = default(Otri);
+			var count = points.Count;
 			sortarray = new Vertex[count];
-			int num = 0;
-			foreach (Vertex point in points)
+			var num = 0;
+			foreach (var point in points)
 			{
 				sortarray[num++] = point;
 			}
 
 			VertexSort(0, count - 1);
 			num = 0;
-			for (int i = 1; i < count; i++)
+			for (var i = 1; i < count; i++)
 			{
 				if (sortarray[num].x == sortarray[i].x && sortarray[num].y == sortarray[i].y)
 				{
 					if (VerboseLogging)
 					{
-						string msg = $"Warning by Dwyer.Triangulate(): A duplicate vertex appeared and was ignored (ID {sortarray[i].id}).";
+						var msg = $"Warning by Dwyer.Triangulate(): A duplicate vertex appeared and was ignored (ID {sortarray[i].id}).";
 					}
 
 					sortarray[i].type = VertexType.UndeadVertex;
@@ -59,7 +57,7 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 			num++;
 			if (UseDwyer)
 			{
-				int num2 = num >> 1;
+				var num2 = num >> 1;
 				if (num - num2 >= 2)
 				{
 					if (num2 >= 2)
@@ -78,15 +76,15 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 
 		private void VertexSort(int left, int right)
 		{
-			int num = left;
-			int num2 = right;
+			var num = left;
+			var num2 = right;
 			if (right - left + 1 < 32)
 			{
-				for (int i = left + 1; i <= right; i++)
+				for (var i = left + 1; i <= right; i++)
 				{
-					Vertex vertex = sortarray[i];
-					int num3 = i - 1;
-					while (num3 >= left && (sortarray[num3].x > vertex.x || (sortarray[num3].x == vertex.x && sortarray[num3].y > vertex.y)))
+					var vertex = sortarray[i];
+					var num3 = i - 1;
+					while (num3 >= left && (sortarray[num3].x > vertex.x || sortarray[num3].x == vertex.x && sortarray[num3].y > vertex.y))
 					{
 						sortarray[num3 + 1] = sortarray[num3];
 						num3--;
@@ -98,9 +96,9 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 				return;
 			}
 
-			int num4 = rand.Next(left, right);
-			double x = sortarray[num4].x;
-			double y = sortarray[num4].y;
+			var num4 = rand.Next(left, right);
+			var x = sortarray[num4].x;
+			var y = sortarray[num4].y;
 			left--;
 			right++;
 			while (left < right)
@@ -109,15 +107,15 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 				{
 					left++;
 				}
-				while (left <= right && (sortarray[left].x < x || (sortarray[left].x == x && sortarray[left].y < y)));
+				while (left <= right && (sortarray[left].x < x || sortarray[left].x == x && sortarray[left].y < y));
 				do
 				{
 					right--;
 				}
-				while (left <= right && (sortarray[right].x > x || (sortarray[right].x == x && sortarray[right].y > y)));
+				while (left <= right && (sortarray[right].x > x || sortarray[right].x == x && sortarray[right].y > y));
 				if (left < right)
 				{
-					Vertex vertex2 = sortarray[left];
+					var vertex2 = sortarray[left];
 					sortarray[left] = sortarray[right];
 					sortarray[right] = vertex2;
 				}
@@ -136,14 +134,14 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 
 		private void VertexMedian(int left, int right, int median, int axis)
 		{
-			int num = right - left + 1;
-			int left2 = left;
-			int right2 = right;
+			var num = right - left + 1;
+			var left2 = left;
+			var right2 = right;
 			if (num == 2)
 			{
-				if (sortarray[left][axis] > sortarray[right][axis] || (sortarray[left][axis] == sortarray[right][axis] && sortarray[left][1 - axis] > sortarray[right][1 - axis]))
+				if (sortarray[left][axis] > sortarray[right][axis] || sortarray[left][axis] == sortarray[right][axis] && sortarray[left][1 - axis] > sortarray[right][1 - axis])
 				{
-					Vertex vertex = sortarray[right];
+					var vertex = sortarray[right];
 					sortarray[right] = sortarray[left];
 					sortarray[left] = vertex;
 				}
@@ -151,9 +149,9 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 				return;
 			}
 
-			int num2 = rand.Next(left, right);
-			double num3 = sortarray[num2][axis];
-			double num4 = sortarray[num2][1 - axis];
+			var num2 = rand.Next(left, right);
+			var num3 = sortarray[num2][axis];
+			var num4 = sortarray[num2][1 - axis];
 			left--;
 			right++;
 			while (left < right)
@@ -162,15 +160,15 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 				{
 					left++;
 				}
-				while (left <= right && (sortarray[left][axis] < num3 || (sortarray[left][axis] == num3 && sortarray[left][1 - axis] < num4)));
+				while (left <= right && (sortarray[left][axis] < num3 || sortarray[left][axis] == num3 && sortarray[left][1 - axis] < num4));
 				do
 				{
 					right--;
 				}
-				while (left <= right && (sortarray[right][axis] > num3 || (sortarray[right][axis] == num3 && sortarray[right][1 - axis] > num4)));
+				while (left <= right && (sortarray[right][axis] > num3 || sortarray[right][axis] == num3 && sortarray[right][1 - axis] > num4));
 				if (left < right)
 				{
-					Vertex vertex = sortarray[left];
+					var vertex = sortarray[left];
 					sortarray[left] = sortarray[right];
 					sortarray[right] = vertex;
 				}
@@ -189,8 +187,8 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 
 		private void AlternateAxes(int left, int right, int axis)
 		{
-			int num = right - left + 1;
-			int num2 = num >> 1;
+			var num = right - left + 1;
+			var num2 = num >> 1;
 			if (num <= 3)
 			{
 				axis = 0;
@@ -210,14 +208,14 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 
 		private void MergeHulls(ref Otri farleft, ref Otri innerleft, ref Otri innerright, ref Otri farright, int axis)
 		{
-			Otri ot = default(Otri);
-			Otri ot2 = default(Otri);
-			Otri ot3 = default(Otri);
-			Otri ot4 = default(Otri);
-			Otri ot5 = default(Otri);
-			Otri ot6 = default(Otri);
-			Otri ot7 = default(Otri);
-			Otri newotri = default(Otri);
+			var ot = default(Otri);
+			var ot2 = default(Otri);
+			var ot3 = default(Otri);
+			var ot4 = default(Otri);
+			var ot5 = default(Otri);
+			var ot6 = default(Otri);
+			var ot7 = default(Otri);
+			var newotri = default(Otri);
 			Vertex vertex = innerleft.Dest();
 			Vertex vertex2 = innerleft.Apex();
 			Vertex vertex3 = innerright.Org();
@@ -313,14 +311,14 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 				newotri.Lprev(ref farright);
 			}
 
-			Vertex vertex10 = vertex;
-			Vertex vertex11 = vertex3;
+			var vertex10 = vertex;
+			var vertex11 = vertex3;
 			Vertex vertex12 = ot.Apex();
 			Vertex vertex13 = ot2.Apex();
 			while (true)
 			{
-				bool flag2 = predicates.CounterClockwise(vertex12, vertex10, vertex11) <= 0.0;
-				bool flag3 = predicates.CounterClockwise(vertex13, vertex10, vertex11) <= 0.0;
+				var flag2 = predicates.CounterClockwise(vertex12, vertex10, vertex11) <= 0.0;
+				var flag3 = predicates.CounterClockwise(vertex13, vertex10, vertex11) <= 0.0;
 				if (flag2 && flag3)
 				{
 					break;
@@ -333,7 +331,7 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 					Vertex vertex14 = ot3.Apex();
 					if (vertex14 != null)
 					{
-						bool flag4 = predicates.InCircle(vertex10, vertex11, vertex12, vertex14) > 0.0;
+						var flag4 = predicates.InCircle(vertex10, vertex11, vertex12, vertex14) > 0.0;
 						while (flag4)
 						{
 							ot3.Lnext();
@@ -367,7 +365,7 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 					Vertex vertex14 = ot3.Apex();
 					if (vertex14 != null)
 					{
-						bool flag4 = predicates.InCircle(vertex10, vertex11, vertex13, vertex14) > 0.0;
+						var flag4 = predicates.InCircle(vertex10, vertex11, vertex13, vertex14) > 0.0;
 						while (flag4)
 						{
 							ot3.Lprev();
@@ -394,7 +392,7 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 					}
 				}
 
-				if (flag2 || (!flag3 && predicates.InCircle(vertex12, vertex10, vertex11, vertex13) > 0.0))
+				if (flag2 || !flag3 && predicates.InCircle(vertex12, vertex10, vertex11, vertex13) > 0.0)
 				{
 					newotri.Bond(ref ot2);
 					ot2.Lprev(ref newotri);
@@ -451,13 +449,13 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 
 		private void DivconqRecurse(int left, int right, int axis, ref Otri farleft, ref Otri farright)
 		{
-			Otri newotri = default(Otri);
-			Otri newotri2 = default(Otri);
-			Otri newotri3 = default(Otri);
-			Otri newotri4 = default(Otri);
-			Otri farright2 = default(Otri);
-			Otri farleft2 = default(Otri);
-			int num = right - left + 1;
+			var newotri = default(Otri);
+			var newotri2 = default(Otri);
+			var newotri3 = default(Otri);
+			var newotri4 = default(Otri);
+			var farright2 = default(Otri);
+			var farleft2 = default(Otri);
+			var num = right - left + 1;
 			switch (num)
 			{
 				case 2:
@@ -562,7 +560,7 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 					}
 				default:
 					{
-						int num2 = num >> 1;
+						var num2 = num >> 1;
 						DivconqRecurse(left, left + num2 - 1, 1 - axis, ref farleft, ref farright2);
 						DivconqRecurse(left + num2, right, 1 - axis, ref farleft2, ref farright);
 						MergeHulls(ref farleft, ref farright2, ref farleft2, ref farright, axis);
@@ -573,15 +571,15 @@ namespace MGroup.MSolve.Core.Geometry.Triangulation
 
 		private int RemoveGhosts(ref Otri startghost)
 		{
-			Otri ot = default(Otri);
-			Otri ot2 = default(Otri);
-			Otri ot3 = default(Otri);
+			var ot = default(Otri);
+			var ot2 = default(Otri);
+			var ot3 = default(Otri);
 			bool flag = !mesh.behavior.Poly;
 			startghost.Lprev(ref ot);
 			ot.Sym();
 			mesh.dummytri.neighbors[0] = ot;
 			startghost.Copy(ref ot2);
-			int num = 0;
+			var num = 0;
 			do
 			{
 				num++;
